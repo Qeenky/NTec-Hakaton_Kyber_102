@@ -1,0 +1,149 @@
+{
+  "_meta": {
+    "description": "Демонстрационные карточки двух агрегатов. Данные обезличены; реальные данные заказчика в репозиторий не входят."
+  },
+  "equipment": [
+    {
+      "id": "PUMP-001",
+      "name": "Насосный агрегат",
+      "model": "DEMO-PUMP",
+      "serial": "DEMO-001",
+      "year": 2023,
+      "runtime_hours": 7400.0,
+      "normative_life_years": 20,
+      "last_service_date": null,
+      "qr_code": "PUMP-001",
+      "location": "Демонстрационный стенд",
+      "baseline": {
+        "vibration_rms": 1.0,
+        "vibration_axial": 1.0,
+        "vibration_hf": 0.1,
+        "vibration_lf_1x": 0.8,
+        "vibration_lf_2x": 0.3,
+        "temperature_bearing": 50.0,
+        "temperature_motor": 65.0,
+        "current_a": 23.0,
+        "current_b": 23.0,
+        "current_c": 23.0,
+        "pressure_inlet": 0.3,
+        "pressure_outlet": 10.0,
+        "flow": 18.0,
+        "efficiency": 63.0,
+        "runtime_hours": 7400.0,
+        "oil_level": 72.0,
+        "oil_color": "light",
+        "noise_db": 74.0,
+        "rpm_pump": 260.0,
+        "rpm_motor": 1460.0
+      },
+      "components": [
+        {
+          "name": "motor",
+          "kind": "component",
+          "normative_life_years": 20,
+          "installed_date": "2023-01-01",
+          "condition": "ok"
+        },
+        {
+          "name": "pump",
+          "kind": "component",
+          "normative_life_years": 20,
+          "installed_date": "2023-01-01",
+          "condition": "ok"
+        },
+        {
+          "name": "coupling_guard",
+          "kind": "component",
+          "normative_life_years": 10,
+          "installed_date": null,
+          "condition": "ok"
+        },
+        {
+          "name": "flange",
+          "kind": "component",
+          "normative_life_years": 10,
+          "installed_date": null,
+          "condition": "ok"
+        },
+        {
+          "name": "manometer",
+          "kind": "component",
+          "normative_life_years": 5,
+          "installed_date": "2023-01-01",
+          "condition": "ok"
+        }
+      ]
+    },
+    {
+      "id": "PUMP-002",
+      "name": "Насосный агрегат (дефектный участок)",
+      "model": "DEMO-PUMP",
+      "serial": "DEMO-002",
+      "year": 2023,
+      "runtime_hours": 7400.0,
+      "normative_life_years": 20,
+      "last_service_date": null,
+      "qr_code": "PUMP-002",
+      "location": "Демонстрационный стенд",
+      "baseline": {
+        "vibration_rms": 1.0,
+        "vibration_axial": 1.0,
+        "vibration_hf": 0.1,
+        "vibration_lf_1x": 0.8,
+        "vibration_lf_2x": 0.3,
+        "temperature_bearing": 50.0,
+        "temperature_motor": 65.0,
+        "current_a": 23.0,
+        "current_b": 23.0,
+        "current_c": 23.0,
+        "pressure_inlet": 0.3,
+        "pressure_outlet": 10.0,
+        "flow": 18.0,
+        "efficiency": 63.0,
+        "runtime_hours": 7400.0,
+        "oil_level": 72.0,
+        "oil_color": "light",
+        "noise_db": 74.0,
+        "rpm_pump": 260.0,
+        "rpm_motor": 1460.0
+      },
+      "components": [
+        {
+          "name": "motor",
+          "kind": "component",
+          "normative_life_years": 20,
+          "installed_date": "2023-01-01",
+          "condition": "ok"
+        },
+        {
+          "name": "pump",
+          "kind": "component",
+          "normative_life_years": 20,
+          "installed_date": "2023-01-01",
+          "condition": "possible_defect"
+        },
+        {
+          "name": "coupling_guard",
+          "kind": "component",
+          "normative_life_years": 10,
+          "installed_date": null,
+          "condition": "possible_defect"
+        },
+        {
+          "name": "flange",
+          "kind": "component",
+          "normative_life_years": 10,
+          "installed_date": null,
+          "condition": "ok"
+        },
+        {
+          "name": "manometer",
+          "kind": "component",
+          "normative_life_years": 5,
+          "installed_date": "2023-01-01",
+          "condition": "ok"
+        }
+      ]
+    }
+  ]
+}

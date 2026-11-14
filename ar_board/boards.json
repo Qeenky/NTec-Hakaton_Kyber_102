@@ -1,0 +1,14 @@
+{
+  "boards": [
+    {
+      "board_id": "clean",
+      "identity_marker_id": 7,
+      "layout": "out_real_markers/layout.json"
+    },
+    {
+      "board_id": "defect",
+      "identity_marker_id": 8,
+      "layout": "out_defect_markers/layout.json"
+    }
+  ]
+}

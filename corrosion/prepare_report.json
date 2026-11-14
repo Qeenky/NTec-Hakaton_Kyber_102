@@ -1,0 +1,71 @@
+{
+  "class_names": [
+    "corrosion"
+  ],
+  "params": {
+    "out": "D:\\NTec-Хакатон\\corrosion\\dataset",
+    "dedup_dist": 3,
+    "min_box": 8.0,
+    "min_area": 400.0
+  },
+  "sources": {
+    "pipelines": {
+      "images_read": 110,
+      "images_kept": 26,
+      "boxes": 168,
+      "images_dropped": 84
+    },
+    "condition": {
+      "images_read": 440,
+      "images_kept": 440,
+      "boxes": 4075,
+      "images_dropped": 0
+    },
+    "mendeley": {
+      "images": 152,
+      "boxes": 0,
+      "used_for_training": false,
+      "reason": "в публичном архиве Mendeley только изображения, файлов разметки нет"
+    },
+    "wpi": {
+      "images": 600,
+      "boxes": 0,
+      "used_for_training": false,
+      "reason": "только экспертный рейтинг снимка (xlsx), боксов/масок нет"
+    }
+  },
+  "dropped_reasons": {
+    "дубликат (dHash<= 3)": 83,
+    "нет разметки": 1
+  },
+  "split": {
+    "train": {
+      "images": 372,
+      "boxes": 3375,
+      "by_source": {
+        "condition": 352,
+        "pipelines": 20
+      }
+    },
+    "val": {
+      "images": 47,
+      "boxes": 420,
+      "by_source": {
+        "condition": 44,
+        "pipelines": 3
+      }
+    },
+    "test": {
+      "images": 47,
+      "boxes": 448,
+      "by_source": {
+        "condition": 44,
+        "pipelines": 3
+      }
+    }
+  },
+  "totals": {
+    "images": 466,
+    "boxes": 4243
+  }
+}

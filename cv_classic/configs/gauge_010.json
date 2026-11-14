@@ -1,0 +1,23 @@
+{
+  "angle_min": 232.32904133091984,
+  "angle_max": 322.32904133091984,
+  "value_min": 0.0,
+  "value_max": 1.6,
+  "unit": "MPa",
+  "clockwise": true,
+  "center": [
+    411.9,
+    422.9
+  ],
+  "radius": 354.0596039157815,
+  "auto_orient": false,
+  "target_size": 512,
+  "min_needle_frac": 0.3,
+  "min_confidence": 0.15,
+  "image_path": "cv_classic\\data\\synthetic\\gauge_010.png",
+  "keep_debug_image": false,
+  "created": "2026-11-13T08:34:35+00:00",
+  "schema": "cv_classic.gauge_config/v1",
+  "calibration_mode": "points",
+  "radius_source": "clicks*1.25"
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR оборудования · PUMP-001 / PUMP-002</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    color: #1c242e;
+    font-family: "Segoe UI", Arial, sans-serif;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.2vmin;
+  }
+  #qr {
+    display: block;
+    width: min(78vmin, 78vw);
+    height: auto;
+    background: #ffffff;
+    image-rendering: pixelated;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  #caption {
+    font-size: clamp(18px, 3.4vmin, 46px);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  #hint {
+    font-size: clamp(12px, 1.7vmin, 22px);
+    color: #6c7682;
+  }
+  #switch {
+    font-size: clamp(12px, 1.8vmin, 24px);
+    color: #1c242e;
+    background: #f2f5f8;
+    border: 1px solid #d6dee6;
+    border-radius: 999px;
+    padding: 0.35em 1em;
+  }
+  #switch b { color: #0b6bcb; }
+  body:fullscreen #hint,
+  body:-webkit-full-screen #hint {
+    display: none;
+  }
+  body:fullscreen {
+    gap: 1.4vmin;
+  }
+  body:fullscreen #qr {
+    width: min(84vmin, 84vw);
+  }
+</style>
+</head>
+<body>
+  <img id="qr" src="PUMP-001.png" alt="QR оборудования PUMP-001">
+  <div id="caption">PUMP-001 · QR оборудования</div>
+  <div id="switch"><b>1</b> — исправный PUMP-001 · <b>2</b> — дефектный PUMP-002</div>
+  <div id="hint">Клик — во весь экран · Esc — выйти · 1/2 — сменить объект</div>
+<script>
+  const page = document.body;
+  const qr = document.getElementById("qr");
+  const caption = document.getElementById("caption");
+
+  // Два разных объекта — два разных QR. board_id в API = id оборудования.
+  const OBJECTS = [
+    { id: "PUMP-001", src: "PUMP-001.png", caption: "PUMP-001 · QR оборудования" },
+    { id: "PUMP-002", src: "PUMP-002.png", caption: "PUMP-002 · дефектный участок" }
+  ];
+  let index = 0;
+
+  function show(next) {
+    index = (next + OBJECTS.length) % OBJECTS.length;
+    const object = OBJECTS[index];
+    qr.src = object.src;
+    qr.alt = "QR оборудования " + object.id;
+    caption.textContent = object.caption;
+    document.title = object.id + " · QR оборудования";
+    try { history.replaceState(null, "", "#" + object.id); } catch (e) {}
+  }
+
+  function toggleFullscreen() {
+    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+      const request = page.requestFullscreen || page.webkitRequestFullscreen;
+      if (request) request.call(page).catch(() => {});
+    } else {
+      const exit = document.exitFullscreen || document.webkitExitFullscreen;
+      if (exit) exit.call(document);
+    }
+  }
+
+  document.addEventListener("click", toggleFullscreen);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "1") {
+      event.preventDefault();
+      show(0);
+    } else if (event.key === "2") {
+      event.preventDefault();
+      show(1);
+    } else if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      event.preventDefault();
+      show(index + 1);
+    } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      event.preventDefault();
+      show(index - 1);
+    } else if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      toggleFullscreen();
+    }
+  });
+  qr.addEventListener("error", () => {
+    document.getElementById("hint").textContent =
+      "Нет файла " + OBJECTS[index].src + " рядом с qr_card.html";
+  });
+
+  const initial = location.hash.replace("#", "").toUpperCase();
+  const found = OBJECTS.findIndex((object) => object.id === initial);
+  show(found >= 0 ? found : 0);
+</script>
+</body>
+</html>

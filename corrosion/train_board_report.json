@@ -1,0 +1,31 @@
+{
+  "task": "fine-tune YOLO11n на кропах планшетов (разметка по доске)",
+  "start_weights": "D:\\NTec-Хакатон\\corrosion\\runs\\train\\weights\\best.pt",
+  "weights": "D:\\NTec-Хакатон\\corrosion\\runs\\finetune\\weights\\best.pt",
+  "onnx": "D:\\NTec-Хакатон\\corrosion\\models\\corrosion_board.onnx",
+  "data": "D:\\NTec-Хакатон\\corrosion\\dataset_board\\data.yaml",
+  "params": {
+    "data": "D:\\NTec-Хакатон\\corrosion\\dataset_board\\data.yaml",
+    "model": "D:\\NTec-Хакатон\\corrosion\\runs\\train\\weights\\best.pt",
+    "epochs": 50,
+    "imgsz": 640,
+    "batch": 16,
+    "device": "0",
+    "workers": 4,
+    "patience": 20,
+    "time_budget_min": 60.0,
+    "name": "finetune",
+    "seed": 20261114,
+    "export": true
+  },
+  "train_seconds": 1461.4,
+  "train_minutes": 24.36,
+  "epochs_done": 50,
+  "val_metrics": {
+    "mAP50": 0.995,
+    "mAP50_95": 0.8955,
+    "precision": 0.9968945993772454,
+    "recall": 1.0
+  },
+  "caveat": "Разметка дообучения — 'дефектная доска' (бокс на весь кроп зоны), не попиксельная локализация коррозии."
+}

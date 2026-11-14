@@ -1,0 +1,2295 @@
+{
+  "generated_at": "2026-11-14T02:02:57",
+  "seed": 20261115,
+  "frame_size": [
+    1280,
+    720
+  ],
+  "environment": {
+    "python": "3.10.11",
+    "opencv": "4.10.0",
+    "numpy": "2.2.6",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "cpu_only": true
+  },
+  "config": {
+    "min_inliers": 15,
+    "min_inlier_ratio": 0.25,
+    "ransac_px": 3.0,
+    "lowe_ratio": 0.75,
+    "min_ncc": 0.3,
+    "hold_seconds": 1.5,
+    "smoother_alpha": 0.35,
+    "methods": [
+      "orb",
+      "akaze"
+    ],
+    "confidence_formula": "0.5*min(1,inliers/60) + 0.3*min(1,ratio/0.6) + 0.2*exp(-reproj_px/5)"
+  },
+  "reference": {
+    "out_real": {
+      "build_or_load_ms": 826.0,
+      "ref_image": [
+        1131,
+        1600
+      ],
+      "ref_scale": 0.322516,
+      "features": {
+        "orb": 4000,
+        "akaze": 1608
+      },
+      "model": "models/out_real.npz"
+    },
+    "out_defect": {
+      "build_or_load_ms": 672.3,
+      "ref_image": [
+        1131,
+        1600
+      ],
+      "ref_scale": 0.322516,
+      "features": {
+        "orb": 4000,
+        "akaze": 6714
+      },
+      "model": "models/out_defect.npz"
+    }
+  },
+  "primary": {
+    "frames": 30,
+    "success": 30,
+    "success_rate": 1.0,
+    "targets": {
+      "success_rate": 0.85,
+      "mean_error_px": 8.0,
+      "p95_error_px": 20.0
+    },
+    "error_mean_px": 0.527,
+    "error_p95_px": 1.068,
+    "error_max_px": 3.069,
+    "error_mean_of_frames_px": 0.518,
+    "error_p95_of_frames_px": 0.84,
+    "inliers_mean": 447.1,
+    "inliers_min": 142,
+    "confidence_mean": 0.97,
+    "ncc_mean": 0.9594,
+    "methods": {
+      "orb": 22,
+      "akaze": 8
+    },
+    "timing": {
+      "mean": 101.11,
+      "p50": 99.955,
+      "p95": 123.9755,
+      "min": 75.66,
+      "max": 166.06
+    },
+    "per_frame": [
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 283,
+        "inlier_ratio": 0.7818,
+        "matches": 362,
+        "confidence": 0.9598,
+        "ncc": 0.9647,
+        "reproj_px": 1.123,
+        "time_ms": 92.15,
+        "error_mean_px": 0.456,
+        "error_p95_px": 0.851,
+        "error_max_px": 1.143,
+        "reason": "",
+        "timings_ms": {
+          "orb": 60.0,
+          "akaze": 78.7,
+          "total": 91.98
+        },
+        "meta": {
+          "tilt_deg": 14.67,
+          "scale": 0.9116,
+          "rotation_deg": 5.92,
+          "distance_m": 0.7586,
+          "brightness": 1.167,
+          "contrast": -8.02,
+          "blur_sigma": 0.6,
+          "jpeg_quality": 80,
+          "shading": 0.1
+        },
+        "source": "out_real",
+        "index": 0
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 216,
+        "inlier_ratio": 0.8244,
+        "matches": 262,
+        "confidence": 0.9722,
+        "ncc": 0.9659,
+        "reproj_px": 0.749,
+        "time_ms": 80.34,
+        "error_mean_px": 0.461,
+        "error_p95_px": 0.629,
+        "error_max_px": 0.831,
+        "reason": "",
+        "timings_ms": {
+          "orb": 44.53,
+          "akaze": 69.22,
+          "total": 80.19
+        },
+        "meta": {
+          "tilt_deg": 6.05,
+          "scale": 0.6915,
+          "rotation_deg": 1.77,
+          "distance_m": 0.9148,
+          "brightness": 0.898,
+          "contrast": 12.5,
+          "blur_sigma": 0.68,
+          "jpeg_quality": 82,
+          "shading": 0.1
+        },
+        "source": "out_real",
+        "index": 1
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 266,
+        "inlier_ratio": 0.8036,
+        "matches": 331,
+        "confidence": 0.9675,
+        "ncc": 0.9548,
+        "reproj_px": 0.888,
+        "time_ms": 105.12,
+        "error_mean_px": 0.576,
+        "error_p95_px": 1.057,
+        "error_max_px": 1.523,
+        "reason": "",
+        "timings_ms": {
+          "orb": 48.33,
+          "akaze": 93.4,
+          "total": 104.95
+        },
+        "meta": {
+          "tilt_deg": 12.22,
+          "scale": 0.903,
+          "rotation_deg": -3.23,
+          "distance_m": 0.7141,
+          "brightness": 0.856,
+          "contrast": -4.07,
+          "blur_sigma": 0.29,
+          "jpeg_quality": 89,
+          "shading": 0.1
+        },
+        "source": "out_real",
+        "index": 2
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 148,
+        "inlier_ratio": 0.7872,
+        "matches": 188,
+        "confidence": 0.9669,
+        "ncc": 0.9298,
+        "reproj_px": 0.905,
+        "time_ms": 75.66,
+        "error_mean_px": 0.647,
+        "error_p95_px": 1.355,
+        "error_max_px": 1.857,
+        "reason": "",
+        "timings_ms": {
+          "orb": 41.25,
+          "akaze": 65.77,
+          "total": 75.46
+        },
+        "meta": {
+          "tilt_deg": 9.94,
+          "scale": 0.7211,
+          "rotation_deg": -14.83,
+          "distance_m": 1.1065,
+          "brightness": 0.962,
+          "contrast": -9.44,
+          "blur_sigma": 0.56,
+          "jpeg_quality": 90,
+          "shading": 0.1
+        },
+        "source": "out_real",
+        "index": 3
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 425,
+        "inlier_ratio": 0.8621,
+        "matches": 493,
+        "confidence": 0.9685,
+        "ncc": 0.9688,
+        "reproj_px": 0.858,
+        "time_ms": 84.95,
+        "error_mean_px": 0.667,
+        "error_p95_px": 0.818,
+        "error_max_px": 0.994,
+        "reason": "",
+        "timings_ms": {
+          "orb": 58.15,
+          "akaze": 73.26,
+          "total": 84.78
+        },
+        "meta": {
+          "tilt_deg": 5.23,
+          "scale": 1.3623,
+          "rotation_deg": -10.89,
+          "distance_m": 0.5568,
+          "brightness": 0.794,
+          "contrast": -7.4,
+          "blur_sigma": 0.33,
+          "jpeg_quality": 92,
+          "shading": 0.1
+        },
+        "source": "out_real",
+        "index": 4
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 390,
+        "inlier_ratio": 0.78,
+        "matches": 500,
+        "confidence": 0.9658,
+        "ncc": 0.9377,
+        "reproj_px": 0.938,
+        "time_ms": 78.88,
+        "error_mean_px": 1.154,
+        "error_p95_px": 2.545,
+        "error_max_px": 2.616,
+        "reason": "",
+        "timings_ms": {
+          "orb": 50.02,
+          "akaze": 66.56,
+          "total": 78.65
+        },
+        "meta": {
+          "tilt_deg": 13.86,
+          "scale": 1.2905,
+          "rotation_deg": -14.02,
+          "distance_m": 0.6117,
+          "brightness": 1.084,
+          "contrast": -3.99,
+          "blur_sigma": 1.02,
+          "jpeg_quality": 83,
+          "shading": 0.1
+        },
+        "source": "out_real",
+        "index": 5
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 161,
+        "inlier_ratio": 0.7352,
+        "matches": 219,
+        "confidence": 0.9732,
+        "ncc": 0.961,
+        "reproj_px": 0.719,
+        "time_ms": 79.54,
+        "error_mean_px": 0.41,
+        "error_p95_px": 0.718,
+        "error_max_px": 0.993,
+        "reason": "",
+        "timings_ms": {
+          "orb": 38.17,
+          "akaze": 69.13,
+          "total": 79.36
+        },
+        "meta": {
+          "tilt_deg": 7.57,
+          "scale": 0.6812,
+          "rotation_deg": 12.48,
+          "distance_m": 1.1383,
+          "brightness": 1.128,
+          "contrast": -21.59,
+          "blur_sigma": 0.88,
+          "jpeg_quality": 82,
+          "shading": 0.1
+        },
+        "source": "out_real",
+        "index": 6
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 406,
+        "inlier_ratio": 0.7719,
+        "matches": 526,
+        "confidence": 0.9635,
+        "ncc": 0.9654,
+        "reproj_px": 1.008,
+        "time_ms": 81.54,
+        "error_mean_px": 0.383,
+        "error_p95_px": 1.08,
+        "error_max_px": 1.491,
+        "reason": "",
+        "timings_ms": {
+          "orb": 50.56,
+          "akaze": 69.86,
+          "total": 81.37
+        },
+        "meta": {
+          "tilt_deg": 13.86,
+          "scale": 1.1491,
+          "rotation_deg": 9.29,
+          "distance_m": 0.629,
+          "brightness": 1.006,
+          "contrast": 21.18,
+          "blur_sigma": 0.44,
+          "jpeg_quality": 86,
+          "shading": 0.1
+        },
+        "source": "out_real",
+        "index": 7
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 222,
+        "inlier_ratio": 0.8284,
+        "matches": 268,
+        "confidence": 0.9686,
+        "ncc": 0.9429,
+        "reproj_px": 0.855,
+        "time_ms": 77.25,
+        "error_mean_px": 0.732,
+        "error_p95_px": 1.087,
+        "error_max_px": 1.105,
+        "reason": "",
+        "timings_ms": {
+          "orb": 46.01,
+          "akaze": 65.47,
+          "total": 77.0
+        },
+        "meta": {
+          "tilt_deg": 22.33,
+          "scale": 0.7729,
+          "rotation_deg": -7.02,
+          "distance_m": 0.8636,
+          "brightness": 0.902,
+          "contrast": 21.74,
+          "blur_sigma": 1.14,
+          "jpeg_quality": 80,
+          "shading": 0.1
+        },
+        "source": "out_real",
+        "index": 8
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 288,
+        "inlier_ratio": 0.8421,
+        "matches": 342,
+        "confidence": 0.9625,
+        "ncc": 0.9681,
+        "reproj_px": 1.038,
+        "time_ms": 89.9,
+        "error_mean_px": 0.461,
+        "error_p95_px": 0.937,
+        "error_max_px": 1.831,
+        "reason": "",
+        "timings_ms": {
+          "orb": 55.83,
+          "akaze": 75.75,
+          "total": 89.73
+        },
+        "meta": {
+          "tilt_deg": 1.13,
+          "scale": 1.39,
+          "rotation_deg": -6.94,
+          "distance_m": 0.5082,
+          "brightness": 0.904,
+          "contrast": 12.05,
+          "blur_sigma": 1.17,
+          "jpeg_quality": 89,
+          "shading": 0.1
+        },
+        "source": "out_real",
+        "index": 9
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 217,
+        "inlier_ratio": 0.851,
+        "matches": 255,
+        "confidence": 0.9728,
+        "ncc": 0.9639,
+        "reproj_px": 0.732,
+        "time_ms": 166.06,
+        "error_mean_px": 0.428,
+        "error_p95_px": 0.647,
+        "error_max_px": 0.657,
+        "reason": "",
+        "timings_ms": {
+          "akaze": 57.39,
+          "orb": 154.79,
+          "total": 165.88
+        },
+        "meta": {
+          "tilt_deg": 0.35,
+          "scale": 0.6823,
+          "rotation_deg": -4.27,
+          "distance_m": 0.9813,
+          "brightness": 0.842,
+          "contrast": -17.69,
+          "blur_sigma": 1.0,
+          "jpeg_quality": 79,
+          "shading": 0.1
+        },
+        "source": "out_real",
+        "index": 10
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 462,
+        "inlier_ratio": 0.8415,
+        "matches": 549,
+        "confidence": 0.969,
+        "ncc": 0.9539,
+        "reproj_px": 0.842,
+        "time_ms": 87.34,
+        "error_mean_px": 0.811,
+        "error_p95_px": 1.655,
+        "error_max_px": 1.707,
+        "reason": "",
+        "timings_ms": {
+          "orb": 48.34,
+          "akaze": 75.6,
+          "total": 87.12
+        },
+        "meta": {
+          "tilt_deg": 8.25,
+          "scale": 0.9574,
+          "rotation_deg": 0.45,
+          "distance_m": 0.6355,
+          "brightness": 1.019,
+          "contrast": -17.12,
+          "blur_sigma": 0.71,
+          "jpeg_quality": 81,
+          "shading": 0.1
+        },
+        "source": "out_real",
+        "index": 11
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 389,
+        "inlier_ratio": 0.8625,
+        "matches": 451,
+        "confidence": 0.9673,
+        "ncc": 0.9571,
+        "reproj_px": 0.892,
+        "time_ms": 94.49,
+        "error_mean_px": 0.5,
+        "error_p95_px": 0.637,
+        "error_max_px": 1.322,
+        "reason": "",
+        "timings_ms": {
+          "orb": 65.14,
+          "akaze": 80.79,
+          "total": 94.31
+        },
+        "meta": {
+          "tilt_deg": 6.1,
+          "scale": 1.1386,
+          "rotation_deg": -12.3,
+          "distance_m": 0.6798,
+          "brightness": 1.035,
+          "contrast": -2.18,
+          "blur_sigma": 0.12,
+          "jpeg_quality": 82,
+          "shading": 0.1
+        },
+        "source": "out_real",
+        "index": 12
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 591,
+        "inlier_ratio": 0.9191,
+        "matches": 643,
+        "confidence": 0.9701,
+        "ncc": 0.9652,
+        "reproj_px": 0.808,
+        "time_ms": 87.41,
+        "error_mean_px": 0.447,
+        "error_p95_px": 1.06,
+        "error_max_px": 1.544,
+        "reason": "",
+        "timings_ms": {
+          "orb": 53.57,
+          "akaze": 74.94,
+          "total": 87.22
+        },
+        "meta": {
+          "tilt_deg": 8.08,
+          "scale": 1.2172,
+          "rotation_deg": -5.3,
+          "distance_m": 0.561,
+          "brightness": 0.78,
+          "contrast": -21.26,
+          "blur_sigma": 0.75,
+          "jpeg_quality": 85,
+          "shading": 0.1
+        },
+        "source": "out_real",
+        "index": 13
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 142,
+        "inlier_ratio": 0.6017,
+        "matches": 236,
+        "confidence": 0.9696,
+        "ncc": 0.9158,
+        "reproj_px": 0.825,
+        "time_ms": 81.64,
+        "error_mean_px": 0.747,
+        "error_p95_px": 1.503,
+        "error_max_px": 3.069,
+        "reason": "",
+        "timings_ms": {
+          "orb": 37.16,
+          "akaze": 70.48,
+          "total": 81.38
+        },
+        "meta": {
+          "tilt_deg": 23.88,
+          "scale": 0.7036,
+          "rotation_deg": 3.38,
+          "distance_m": 0.924,
+          "brightness": 1.005,
+          "contrast": -0.9,
+          "blur_sigma": 1.14,
+          "jpeg_quality": 90,
+          "shading": 0.1
+        },
+        "source": "out_real",
+        "index": 14
+      },
+      {
+        "ok": true,
+        "method": "akaze",
+        "inliers": 1003,
+        "inlier_ratio": 0.9383,
+        "matches": 1069,
+        "confidence": 0.976,
+        "ncc": 0.9823,
+        "reproj_px": 0.639,
+        "time_ms": 117.81,
+        "error_mean_px": 0.47,
+        "error_p95_px": 0.601,
+        "error_max_px": 0.607,
+        "reason": "",
+        "timings_ms": {
+          "orb": 57.71,
+          "akaze": 105.86,
+          "total": 117.61
+        },
+        "meta": {
+          "tilt_deg": 15.35,
+          "scale": 1.0991,
+          "rotation_deg": 6.14,
+          "distance_m": 0.6166,
+          "brightness": 1.087,
+          "contrast": 19.14,
+          "blur_sigma": 0.42,
+          "jpeg_quality": 90,
+          "shading": 0.1
+        },
+        "source": "out_defect",
+        "index": 0
+      },
+      {
+        "ok": true,
+        "method": "akaze",
+        "inliers": 908,
+        "inlier_ratio": 0.9062,
+        "matches": 1002,
+        "confidence": 0.979,
+        "ncc": 0.9627,
+        "reproj_px": 0.554,
+        "time_ms": 115.03,
+        "error_mean_px": 0.527,
+        "error_p95_px": 0.749,
+        "error_max_px": 0.91,
+        "reason": "",
+        "timings_ms": {
+          "orb": 59.78,
+          "akaze": 102.86,
+          "total": 114.88
+        },
+        "meta": {
+          "tilt_deg": 20.71,
+          "scale": 1.3659,
+          "rotation_deg": 11.81,
+          "distance_m": 0.5469,
+          "brightness": 0.824,
+          "contrast": 21.28,
+          "blur_sigma": 0.21,
+          "jpeg_quality": 92,
+          "shading": 0.1
+        },
+        "source": "out_defect",
+        "index": 1
+      },
+      {
+        "ok": true,
+        "method": "akaze",
+        "inliers": 1055,
+        "inlier_ratio": 0.915,
+        "matches": 1153,
+        "confidence": 0.9821,
+        "ncc": 0.9756,
+        "reproj_px": 0.468,
+        "time_ms": 124.34,
+        "error_mean_px": 0.474,
+        "error_p95_px": 0.577,
+        "error_max_px": 0.583,
+        "reason": "",
+        "timings_ms": {
+          "orb": 60.11,
+          "akaze": 111.09,
+          "total": 123.58
+        },
+        "meta": {
+          "tilt_deg": 2.13,
+          "scale": 1.1487,
+          "rotation_deg": 1.31,
+          "distance_m": 0.5454,
+          "brightness": 0.999,
+          "contrast": 3.44,
+          "blur_sigma": 0.35,
+          "jpeg_quality": 87,
+          "shading": 0.1
+        },
+        "source": "out_defect",
+        "index": 2
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 371,
+        "inlier_ratio": 0.9115,
+        "matches": 407,
+        "confidence": 0.9683,
+        "ncc": 0.9517,
+        "reproj_px": 0.864,
+        "time_ms": 101.6,
+        "error_mean_px": 0.357,
+        "error_p95_px": 0.468,
+        "error_max_px": 0.534,
+        "reason": "",
+        "timings_ms": {
+          "orb": 56.04,
+          "akaze": 90.74,
+          "total": 101.22
+        },
+        "meta": {
+          "tilt_deg": 20.69,
+          "scale": 0.9172,
+          "rotation_deg": 10.35,
+          "distance_m": 0.7838,
+          "brightness": 0.789,
+          "contrast": -14.59,
+          "blur_sigma": 0.28,
+          "jpeg_quality": 80,
+          "shading": 0.1
+        },
+        "source": "out_defect",
+        "index": 3
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 519,
+        "inlier_ratio": 0.9058,
+        "matches": 573,
+        "confidence": 0.9693,
+        "ncc": 0.9601,
+        "reproj_px": 0.834,
+        "time_ms": 111.43,
+        "error_mean_px": 0.44,
+        "error_p95_px": 0.493,
+        "error_max_px": 0.499,
+        "reason": "",
+        "timings_ms": {
+          "orb": 56.69,
+          "akaze": 99.6,
+          "total": 111.25
+        },
+        "meta": {
+          "tilt_deg": 0.28,
+          "scale": 0.826,
+          "rotation_deg": 2.89,
+          "distance_m": 0.7865,
+          "brightness": 0.951,
+          "contrast": -9.08,
+          "blur_sigma": 0.99,
+          "jpeg_quality": 87,
+          "shading": 0.1
+        },
+        "source": "out_defect",
+        "index": 4
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 312,
+        "inlier_ratio": 0.8501,
+        "matches": 367,
+        "confidence": 0.9709,
+        "ncc": 0.9503,
+        "reproj_px": 0.786,
+        "time_ms": 99.27,
+        "error_mean_px": 0.484,
+        "error_p95_px": 0.521,
+        "error_max_px": 0.526,
+        "reason": "",
+        "timings_ms": {
+          "orb": 52.6,
+          "akaze": 87.52,
+          "total": 99.01
+        },
+        "meta": {
+          "tilt_deg": 7.76,
+          "scale": 0.7448,
+          "rotation_deg": 5.03,
+          "distance_m": 0.9128,
+          "brightness": 0.957,
+          "contrast": -11.65,
+          "blur_sigma": 1.03,
+          "jpeg_quality": 83,
+          "shading": 0.1
+        },
+        "source": "out_defect",
+        "index": 5
+      },
+      {
+        "ok": true,
+        "method": "akaze",
+        "inliers": 450,
+        "inlier_ratio": 0.8858,
+        "matches": 508,
+        "confidence": 0.9728,
+        "ncc": 0.9705,
+        "reproj_px": 0.731,
+        "time_ms": 114.14,
+        "error_mean_px": 0.37,
+        "error_p95_px": 0.484,
+        "error_max_px": 0.495,
+        "reason": "",
+        "timings_ms": {
+          "orb": 57.51,
+          "akaze": 98.43,
+          "total": 113.78
+        },
+        "meta": {
+          "tilt_deg": 21.65,
+          "scale": 1.1208,
+          "rotation_deg": -10.42,
+          "distance_m": 0.6689,
+          "brightness": 0.848,
+          "contrast": 6.39,
+          "blur_sigma": 0.11,
+          "jpeg_quality": 87,
+          "shading": 0.1
+        },
+        "source": "out_defect",
+        "index": 6
+      },
+      {
+        "ok": true,
+        "method": "akaze",
+        "inliers": 999,
+        "inlier_ratio": 0.9224,
+        "matches": 1083,
+        "confidence": 0.9828,
+        "ncc": 0.973,
+        "reproj_px": 0.45,
+        "time_ms": 123.22,
+        "error_mean_px": 0.491,
+        "error_p95_px": 0.61,
+        "error_max_px": 0.62,
+        "reason": "",
+        "timings_ms": {
+          "orb": 65.37,
+          "akaze": 111.53,
+          "total": 123.07
+        },
+        "meta": {
+          "tilt_deg": 1.89,
+          "scale": 1.223,
+          "rotation_deg": 6.83,
+          "distance_m": 0.5764,
+          "brightness": 0.799,
+          "contrast": 10.87,
+          "blur_sigma": 0.42,
+          "jpeg_quality": 81,
+          "shading": 0.1
+        },
+        "source": "out_defect",
+        "index": 7
+      },
+      {
+        "ok": true,
+        "method": "akaze",
+        "inliers": 721,
+        "inlier_ratio": 0.9315,
+        "matches": 774,
+        "confidence": 0.9691,
+        "ncc": 0.9704,
+        "reproj_px": 0.84,
+        "time_ms": 115.91,
+        "error_mean_px": 0.416,
+        "error_p95_px": 0.525,
+        "error_max_px": 0.546,
+        "reason": "",
+        "timings_ms": {
+          "orb": 56.45,
+          "akaze": 104.53,
+          "total": 115.74
+        },
+        "meta": {
+          "tilt_deg": 1.86,
+          "scale": 1.0991,
+          "rotation_deg": -7.48,
+          "distance_m": 0.6493,
+          "brightness": 0.865,
+          "contrast": 9.11,
+          "blur_sigma": 0.34,
+          "jpeg_quality": 80,
+          "shading": 0.1
+        },
+        "source": "out_defect",
+        "index": 8
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 419,
+        "inlier_ratio": 0.8858,
+        "matches": 473,
+        "confidence": 0.9668,
+        "ncc": 0.9654,
+        "reproj_px": 0.907,
+        "time_ms": 108.42,
+        "error_mean_px": 0.333,
+        "error_p95_px": 0.42,
+        "error_max_px": 0.454,
+        "reason": "",
+        "timings_ms": {
+          "orb": 56.0,
+          "akaze": 97.57,
+          "total": 108.16
+        },
+        "meta": {
+          "tilt_deg": 17.49,
+          "scale": 1.0348,
+          "rotation_deg": 9.22,
+          "distance_m": 0.6886,
+          "brightness": 0.868,
+          "contrast": -8.51,
+          "blur_sigma": 0.61,
+          "jpeg_quality": 79,
+          "shading": 0.1
+        },
+        "source": "out_defect",
+        "index": 9
+      },
+      {
+        "ok": true,
+        "method": "akaze",
+        "inliers": 361,
+        "inlier_ratio": 0.8848,
+        "matches": 408,
+        "confidence": 0.9724,
+        "ncc": 0.9603,
+        "reproj_px": 0.741,
+        "time_ms": 104.86,
+        "error_mean_px": 0.394,
+        "error_p95_px": 0.471,
+        "error_max_px": 0.521,
+        "reason": "",
+        "timings_ms": {
+          "orb": 54.71,
+          "akaze": 92.24,
+          "total": 104.47
+        },
+        "meta": {
+          "tilt_deg": 5.56,
+          "scale": 0.729,
+          "rotation_deg": 3.76,
+          "distance_m": 0.9076,
+          "brightness": 1.011,
+          "contrast": -10.64,
+          "blur_sigma": 0.09,
+          "jpeg_quality": 89,
+          "shading": 0.1
+        },
+        "source": "out_defect",
+        "index": 10
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 473,
+        "inlier_ratio": 0.8647,
+        "matches": 547,
+        "confidence": 0.9657,
+        "ncc": 0.9644,
+        "reproj_px": 0.939,
+        "time_ms": 116.47,
+        "error_mean_px": 0.546,
+        "error_p95_px": 0.959,
+        "error_max_px": 1.374,
+        "reason": "",
+        "timings_ms": {
+          "orb": 52.99,
+          "akaze": 104.37,
+          "total": 116.28
+        },
+        "meta": {
+          "tilt_deg": 6.42,
+          "scale": 1.0617,
+          "rotation_deg": -13.4,
+          "distance_m": 0.7433,
+          "brightness": 1.106,
+          "contrast": 18.25,
+          "blur_sigma": 0.67,
+          "jpeg_quality": 91,
+          "shading": 0.1
+        },
+        "source": "out_defect",
+        "index": 11
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 251,
+        "inlier_ratio": 0.8567,
+        "matches": 293,
+        "confidence": 0.9705,
+        "ncc": 0.9508,
+        "reproj_px": 0.798,
+        "time_ms": 100.64,
+        "error_mean_px": 0.518,
+        "error_p95_px": 0.583,
+        "error_max_px": 0.584,
+        "reason": "",
+        "timings_ms": {
+          "orb": 49.65,
+          "akaze": 90.12,
+          "total": 100.21
+        },
+        "meta": {
+          "tilt_deg": 3.63,
+          "scale": 0.6086,
+          "rotation_deg": 6.98,
+          "distance_m": 1.1599,
+          "brightness": 1.112,
+          "contrast": -16.99,
+          "blur_sigma": 0.28,
+          "jpeg_quality": 86,
+          "shading": 0.1
+        },
+        "source": "out_defect",
+        "index": 12
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 652,
+        "inlier_ratio": 0.9341,
+        "matches": 698,
+        "confidence": 0.9692,
+        "ncc": 0.9665,
+        "reproj_px": 0.835,
+        "time_ms": 123.53,
+        "error_mean_px": 0.436,
+        "error_p95_px": 0.62,
+        "error_max_px": 0.67,
+        "reason": "",
+        "timings_ms": {
+          "orb": 52.36,
+          "akaze": 112.06,
+          "total": 123.28
+        },
+        "meta": {
+          "tilt_deg": 6.44,
+          "scale": 0.9676,
+          "rotation_deg": -2.01,
+          "distance_m": 0.6548,
+          "brightness": 0.812,
+          "contrast": 9.81,
+          "blur_sigma": 0.91,
+          "jpeg_quality": 83,
+          "shading": 0.1
+        },
+        "source": "out_defect",
+        "index": 13
+      },
+      {
+        "ok": true,
+        "method": "akaze",
+        "inliers": 312,
+        "inlier_ratio": 0.8966,
+        "matches": 348,
+        "confidence": 0.9665,
+        "ncc": 0.9618,
+        "reproj_px": 0.918,
+        "time_ms": 94.36,
+        "error_mean_px": 0.416,
+        "error_p95_px": 0.543,
+        "error_max_px": 0.548,
+        "reason": "",
+        "timings_ms": {
+          "orb": 52.16,
+          "akaze": 83.52,
+          "total": 94.18
+        },
+        "meta": {
+          "tilt_deg": 2.24,
+          "scale": 0.782,
+          "rotation_deg": 7.65,
+          "distance_m": 0.9151,
+          "brightness": 1.178,
+          "contrast": 9.93,
+          "blur_sigma": 1.18,
+          "jpeg_quality": 86,
+          "shading": 0.1
+        },
+        "source": "out_defect",
+        "index": 14
+      }
+    ],
+    "passed": true
+  },
+  "negatives": {
+    "count": 6,
+    "false_positives": 0,
+    "false_positive_rate": 0.0,
+    "items": [
+      {
+        "name": "01_corroded_pipe.jpg",
+        "kind": "photo",
+        "ok": false,
+        "confidence": 0.0,
+        "inliers": 0,
+        "reason": "no_homography"
+      },
+      {
+        "name": "02_valve.jpg",
+        "kind": "photo",
+        "ok": false,
+        "confidence": 0.0,
+        "inliers": 0,
+        "reason": "no_homography"
+      },
+      {
+        "name": "03_pipe_weld.jpg",
+        "kind": "photo",
+        "ok": false,
+        "confidence": 0.0,
+        "inliers": 0,
+        "reason": "no_homography"
+      },
+      {
+        "name": "synthetic_noise",
+        "kind": "synthetic",
+        "ok": false,
+        "confidence": 0.0,
+        "inliers": 0,
+        "reason": "no_homography"
+      },
+      {
+        "name": "synthetic_texture",
+        "kind": "synthetic",
+        "ok": false,
+        "confidence": 0.0,
+        "inliers": 0,
+        "reason": "no_homography"
+      },
+      {
+        "name": "synthetic_gradient",
+        "kind": "synthetic",
+        "ok": false,
+        "confidence": 0.0,
+        "inliers": 0,
+        "reason": "no_homography"
+      }
+    ],
+    "passed": true
+  },
+  "blur": {
+    "items": [
+      {
+        "blur_sigma": 4.0,
+        "repeat": 0,
+        "ok": true,
+        "confidence": 0.706,
+        "inliers": 38,
+        "reason": ""
+      },
+      {
+        "blur_sigma": 4.0,
+        "repeat": 1,
+        "ok": true,
+        "confidence": 0.5384,
+        "inliers": 25,
+        "reason": ""
+      },
+      {
+        "blur_sigma": 6.0,
+        "repeat": 0,
+        "ok": true,
+        "confidence": 0.5304,
+        "inliers": 22,
+        "reason": ""
+      },
+      {
+        "blur_sigma": 6.0,
+        "repeat": 1,
+        "ok": true,
+        "confidence": 0.4963,
+        "inliers": 15,
+        "reason": ""
+      },
+      {
+        "blur_sigma": 8.0,
+        "repeat": 0,
+        "ok": false,
+        "confidence": 0.0,
+        "inliers": 0,
+        "reason": "no_homography"
+      },
+      {
+        "blur_sigma": 8.0,
+        "repeat": 1,
+        "ok": false,
+        "confidence": 0.0,
+        "inliers": 0,
+        "reason": "no_homography"
+      },
+      {
+        "blur_sigma": 12.0,
+        "repeat": 0,
+        "ok": false,
+        "confidence": 0.0,
+        "inliers": 0,
+        "reason": "no_homography"
+      },
+      {
+        "blur_sigma": 12.0,
+        "repeat": 1,
+        "ok": false,
+        "confidence": 0.0,
+        "inliers": 0,
+        "reason": "no_homography"
+      }
+    ],
+    "levels": {
+      "4.0": {
+        "frames": 2,
+        "ok": 2,
+        "max_confidence": 0.706
+      },
+      "6.0": {
+        "frames": 2,
+        "ok": 2,
+        "max_confidence": 0.5304
+      },
+      "8.0": {
+        "frames": 2,
+        "ok": 0,
+        "max_confidence": 0.0
+      },
+      "12.0": {
+        "frames": 2,
+        "ok": 0,
+        "max_confidence": 0.0
+      }
+    },
+    "none_rate_all": 0.5,
+    "none_rate_strong": 1.0,
+    "max_confidence": 0.706,
+    "max_confidence_strong": 0.0,
+    "passed": true
+  },
+  "dark": {
+    "items": [
+      {
+        "gain": 0.12,
+        "repeat": 0,
+        "crashed": false,
+        "ok": true,
+        "confidence": 0.9708,
+        "error_mean_px": 0.304,
+        "reason": ""
+      },
+      {
+        "gain": 0.12,
+        "repeat": 1,
+        "crashed": false,
+        "ok": true,
+        "confidence": 0.966,
+        "error_mean_px": 0.396,
+        "reason": ""
+      },
+      {
+        "gain": 0.06,
+        "repeat": 0,
+        "crashed": false,
+        "ok": true,
+        "confidence": 0.9683,
+        "error_mean_px": 0.459,
+        "reason": ""
+      },
+      {
+        "gain": 0.06,
+        "repeat": 1,
+        "crashed": false,
+        "ok": true,
+        "confidence": 0.9698,
+        "error_mean_px": 0.521,
+        "reason": ""
+      }
+    ],
+    "passed": true
+  },
+  "stress_partial": {
+    "frames": 10,
+    "success": 10,
+    "success_rate": 1.0,
+    "error_mean_px": 0.625,
+    "items": [
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 240,
+        "inlier_ratio": 0.8856,
+        "matches": 271,
+        "confidence": 0.9678,
+        "ncc": 0.6454,
+        "reproj_px": 0.878,
+        "time_ms": 91.03,
+        "error_mean_px": 0.585,
+        "error_p95_px": 1.249,
+        "error_max_px": 1.285,
+        "reason": "",
+        "timings_ms": {
+          "orb": 48.76,
+          "akaze": 78.44,
+          "total": 90.64
+        },
+        "meta": {
+          "tilt_deg": 17.96,
+          "scale": 0.8591,
+          "rotation_deg": -0.82,
+          "distance_m": 0.6915,
+          "brightness": 0.927,
+          "contrast": -2.86,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 0,
+        "occluded": "right"
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 379,
+        "inlier_ratio": 0.8441,
+        "matches": 449,
+        "confidence": 0.9671,
+        "ncc": 0.6153,
+        "reproj_px": 0.898,
+        "time_ms": 88.29,
+        "error_mean_px": 0.597,
+        "error_p95_px": 1.467,
+        "error_max_px": 2.526,
+        "reason": "",
+        "timings_ms": {
+          "orb": 53.48,
+          "akaze": 76.69,
+          "total": 87.84
+        },
+        "meta": {
+          "tilt_deg": 10.4,
+          "scale": 1.0886,
+          "rotation_deg": 10.24,
+          "distance_m": 0.6879,
+          "brightness": 1.071,
+          "contrast": -4.11,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 1,
+        "occluded": "left"
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 118,
+        "inlier_ratio": 0.7468,
+        "matches": 158,
+        "confidence": 0.9723,
+        "ncc": 0.5313,
+        "reproj_px": 0.744,
+        "time_ms": 165.94,
+        "error_mean_px": 0.537,
+        "error_p95_px": 0.746,
+        "error_max_px": 0.779,
+        "reason": "",
+        "timings_ms": {
+          "akaze": 50.71,
+          "orb": 155.94,
+          "total": 165.46
+        },
+        "meta": {
+          "tilt_deg": 19.26,
+          "scale": 0.7266,
+          "rotation_deg": 8.52,
+          "distance_m": 0.9969,
+          "brightness": 1.114,
+          "contrast": 14.11,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 2,
+        "occluded": "right"
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 236,
+        "inlier_ratio": 0.852,
+        "matches": 277,
+        "confidence": 0.9641,
+        "ncc": 0.6101,
+        "reproj_px": 0.989,
+        "time_ms": 88.59,
+        "error_mean_px": 0.525,
+        "error_p95_px": 0.774,
+        "error_max_px": 1.13,
+        "reason": "",
+        "timings_ms": {
+          "orb": 50.73,
+          "akaze": 77.45,
+          "total": 87.91
+        },
+        "meta": {
+          "tilt_deg": 11.5,
+          "scale": 1.0144,
+          "rotation_deg": 11.27,
+          "distance_m": 0.7515,
+          "brightness": 0.95,
+          "contrast": 12.83,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 3,
+        "occluded": "left"
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 141,
+        "inlier_ratio": 0.8545,
+        "matches": 165,
+        "confidence": 0.9694,
+        "ncc": 0.6513,
+        "reproj_px": 0.83,
+        "time_ms": 104.27,
+        "error_mean_px": 1.103,
+        "error_p95_px": 2.091,
+        "error_max_px": 2.148,
+        "reason": "",
+        "timings_ms": {
+          "orb": 46.64,
+          "akaze": 90.98,
+          "total": 103.9
+        },
+        "meta": {
+          "tilt_deg": 19.58,
+          "scale": 0.7754,
+          "rotation_deg": -1.95,
+          "distance_m": 0.818,
+          "brightness": 0.782,
+          "contrast": -15.56,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 4,
+        "occluded": "right"
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 342,
+        "inlier_ratio": 0.7095,
+        "matches": 482,
+        "confidence": 0.966,
+        "ncc": 0.6239,
+        "reproj_px": 0.933,
+        "time_ms": 196.55,
+        "error_mean_px": 0.673,
+        "error_p95_px": 1.179,
+        "error_max_px": 1.214,
+        "reason": "",
+        "timings_ms": {
+          "akaze": 58.93,
+          "orb": 183.81,
+          "total": 196.1
+        },
+        "meta": {
+          "tilt_deg": 17.0,
+          "scale": 1.1031,
+          "rotation_deg": 1.5,
+          "distance_m": 0.5905,
+          "brightness": 1.144,
+          "contrast": -6.81,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 5,
+        "occluded": "left"
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 303,
+        "inlier_ratio": 0.8632,
+        "matches": 351,
+        "confidence": 0.9666,
+        "ncc": 0.6125,
+        "reproj_px": 0.912,
+        "time_ms": 85.69,
+        "error_mean_px": 0.797,
+        "error_p95_px": 1.458,
+        "error_max_px": 1.635,
+        "reason": "",
+        "timings_ms": {
+          "orb": 54.95,
+          "akaze": 73.43,
+          "total": 85.34
+        },
+        "meta": {
+          "tilt_deg": 18.77,
+          "scale": 1.099,
+          "rotation_deg": 5.46,
+          "distance_m": 0.5991,
+          "brightness": 0.91,
+          "contrast": 13.38,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 6,
+        "occluded": "right"
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 232,
+        "inlier_ratio": 0.8112,
+        "matches": 286,
+        "confidence": 0.9663,
+        "ncc": 0.5856,
+        "reproj_px": 0.924,
+        "time_ms": 89.39,
+        "error_mean_px": 0.628,
+        "error_p95_px": 0.849,
+        "error_max_px": 1.303,
+        "reason": "",
+        "timings_ms": {
+          "orb": 49.03,
+          "akaze": 77.41,
+          "total": 88.93
+        },
+        "meta": {
+          "tilt_deg": 10.02,
+          "scale": 0.91,
+          "rotation_deg": 11.9,
+          "distance_m": 0.8384,
+          "brightness": 1.145,
+          "contrast": 0.36,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 7,
+        "occluded": "left"
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 268,
+        "inlier_ratio": 0.665,
+        "matches": 403,
+        "confidence": 0.9691,
+        "ncc": 0.5943,
+        "reproj_px": 0.839,
+        "time_ms": 92.79,
+        "error_mean_px": 0.39,
+        "error_p95_px": 0.869,
+        "error_max_px": 1.793,
+        "reason": "",
+        "timings_ms": {
+          "orb": 51.29,
+          "akaze": 81.23,
+          "total": 92.42
+        },
+        "meta": {
+          "tilt_deg": 4.08,
+          "scale": 0.897,
+          "rotation_deg": -0.86,
+          "distance_m": 0.6917,
+          "brightness": 1.179,
+          "contrast": 3.58,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 8,
+        "occluded": "right"
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 380,
+        "inlier_ratio": 0.8051,
+        "matches": 472,
+        "confidence": 0.9686,
+        "ncc": 0.5435,
+        "reproj_px": 0.854,
+        "time_ms": 85.46,
+        "error_mean_px": 0.413,
+        "error_p95_px": 0.455,
+        "error_max_px": 0.524,
+        "reason": "",
+        "timings_ms": {
+          "orb": 52.43,
+          "akaze": 74.28,
+          "total": 85.03
+        },
+        "meta": {
+          "tilt_deg": 19.74,
+          "scale": 1.1041,
+          "rotation_deg": 1.66,
+          "distance_m": 0.6113,
+          "brightness": 1.13,
+          "contrast": -15.03,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 9,
+        "occluded": "left"
+      }
+    ],
+    "passed": true
+  },
+  "envelope": {
+    "frames": 10,
+    "success": 10,
+    "success_rate": 1.0,
+    "error_mean_px": 0.941,
+    "items": [
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 270,
+        "inlier_ratio": 0.6923,
+        "matches": 390,
+        "confidence": 0.9651,
+        "ncc": 0.8589,
+        "reproj_px": 0.959,
+        "time_ms": 89.2,
+        "error_mean_px": 3.085,
+        "error_p95_px": 6.19,
+        "error_max_px": 6.526,
+        "reason": "",
+        "timings_ms": {
+          "orb": 47.26,
+          "akaze": 77.83,
+          "total": 89.01
+        },
+        "meta": {
+          "tilt_deg": 16.76,
+          "scale": 1.5314,
+          "rotation_deg": -3.11,
+          "distance_m": 0.4157,
+          "brightness": 0.927,
+          "contrast": 15.82,
+          "blur_sigma": 0.91,
+          "jpeg_quality": 89,
+          "shading": 0.1
+        },
+        "index": 0
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 214,
+        "inlier_ratio": 0.8843,
+        "matches": 242,
+        "confidence": 0.9684,
+        "ncc": 0.9579,
+        "reproj_px": 0.859,
+        "time_ms": 78.81,
+        "error_mean_px": 0.583,
+        "error_p95_px": 0.95,
+        "error_max_px": 1.26,
+        "reason": "",
+        "timings_ms": {
+          "orb": 51.36,
+          "akaze": 68.96,
+          "total": 77.58
+        },
+        "meta": {
+          "tilt_deg": 16.36,
+          "scale": 0.9127,
+          "rotation_deg": -16.39,
+          "distance_m": 0.8906,
+          "brightness": 0.784,
+          "contrast": -10.58,
+          "blur_sigma": 0.44,
+          "jpeg_quality": 88,
+          "shading": 0.1
+        },
+        "index": 1
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 427,
+        "inlier_ratio": 0.8307,
+        "matches": 514,
+        "confidence": 0.966,
+        "ncc": 0.965,
+        "reproj_px": 0.932,
+        "time_ms": 96.49,
+        "error_mean_px": 0.555,
+        "error_p95_px": 1.189,
+        "error_max_px": 1.244,
+        "reason": "",
+        "timings_ms": {
+          "orb": 52.89,
+          "akaze": 82.12,
+          "total": 95.93
+        },
+        "meta": {
+          "tilt_deg": 6.71,
+          "scale": 1.266,
+          "rotation_deg": -17.62,
+          "distance_m": 0.6607,
+          "brightness": 1.098,
+          "contrast": 6.44,
+          "blur_sigma": 0.23,
+          "jpeg_quality": 87,
+          "shading": 0.1
+        },
+        "index": 2
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 188,
+        "inlier_ratio": 0.8034,
+        "matches": 234,
+        "confidence": 0.9673,
+        "ncc": 0.9596,
+        "reproj_px": 0.893,
+        "time_ms": 81.3,
+        "error_mean_px": 0.469,
+        "error_p95_px": 0.58,
+        "error_max_px": 0.682,
+        "reason": "",
+        "timings_ms": {
+          "orb": 45.29,
+          "akaze": 68.82,
+          "total": 80.0
+        },
+        "meta": {
+          "tilt_deg": 15.62,
+          "scale": 0.898,
+          "rotation_deg": -12.33,
+          "distance_m": 0.8593,
+          "brightness": 0.79,
+          "contrast": -7.77,
+          "blur_sigma": 0.94,
+          "jpeg_quality": 89,
+          "shading": 0.1
+        },
+        "index": 3
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 496,
+        "inlier_ratio": 0.835,
+        "matches": 594,
+        "confidence": 0.9633,
+        "ncc": 0.9522,
+        "reproj_px": 1.012,
+        "time_ms": 92.72,
+        "error_mean_px": 0.901,
+        "error_p95_px": 1.818,
+        "error_max_px": 2.361,
+        "reason": "",
+        "timings_ms": {
+          "orb": 49.01,
+          "akaze": 80.23,
+          "total": 92.14
+        },
+        "meta": {
+          "tilt_deg": 11.12,
+          "scale": 1.3609,
+          "rotation_deg": 10.71,
+          "distance_m": 0.549,
+          "brightness": 1.174,
+          "contrast": 6.01,
+          "blur_sigma": 0.44,
+          "jpeg_quality": 84,
+          "shading": 0.1
+        },
+        "index": 4
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 389,
+        "inlier_ratio": 0.8625,
+        "matches": 451,
+        "confidence": 0.9615,
+        "ncc": 0.9429,
+        "reproj_px": 1.068,
+        "time_ms": 86.29,
+        "error_mean_px": 0.925,
+        "error_p95_px": 2.136,
+        "error_max_px": 2.941,
+        "reason": "",
+        "timings_ms": {
+          "orb": 59.08,
+          "akaze": 74.65,
+          "total": 85.16
+        },
+        "meta": {
+          "tilt_deg": 13.16,
+          "scale": 1.4185,
+          "rotation_deg": 13.33,
+          "distance_m": 0.5473,
+          "brightness": 1.05,
+          "contrast": -12.92,
+          "blur_sigma": 0.35,
+          "jpeg_quality": 86,
+          "shading": 0.1
+        },
+        "index": 5
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 317,
+        "inlier_ratio": 0.8544,
+        "matches": 371,
+        "confidence": 0.9689,
+        "ncc": 0.8994,
+        "reproj_px": 0.846,
+        "time_ms": 87.45,
+        "error_mean_px": 1.549,
+        "error_p95_px": 3.713,
+        "error_max_px": 6.488,
+        "reason": "",
+        "timings_ms": {
+          "orb": 47.89,
+          "akaze": 74.0,
+          "total": 87.33
+        },
+        "meta": {
+          "tilt_deg": 10.25,
+          "scale": 1.4501,
+          "rotation_deg": -0.7,
+          "distance_m": 0.4445,
+          "brightness": 0.804,
+          "contrast": 20.9,
+          "blur_sigma": 0.57,
+          "jpeg_quality": 92,
+          "shading": 0.1
+        },
+        "index": 6
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 423,
+        "inlier_ratio": 0.9,
+        "matches": 470,
+        "confidence": 0.9656,
+        "ncc": 0.9804,
+        "reproj_px": 0.943,
+        "time_ms": 81.32,
+        "error_mean_px": 0.514,
+        "error_p95_px": 0.68,
+        "error_max_px": 0.749,
+        "reason": "",
+        "timings_ms": {
+          "orb": 48.22,
+          "akaze": 68.92,
+          "total": 80.2
+        },
+        "meta": {
+          "tilt_deg": 1.67,
+          "scale": 1.4909,
+          "rotation_deg": 12.72,
+          "distance_m": 0.5241,
+          "brightness": 0.998,
+          "contrast": -2.37,
+          "blur_sigma": 0.56,
+          "jpeg_quality": 90,
+          "shading": 0.1
+        },
+        "index": 7
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 308,
+        "inlier_ratio": 0.7778,
+        "matches": 396,
+        "confidence": 0.9689,
+        "ncc": 0.9855,
+        "reproj_px": 0.846,
+        "time_ms": 85.15,
+        "error_mean_px": 0.479,
+        "error_p95_px": 0.593,
+        "error_max_px": 0.91,
+        "reason": "",
+        "timings_ms": {
+          "orb": 48.78,
+          "akaze": 72.09,
+          "total": 84.52
+        },
+        "meta": {
+          "tilt_deg": 24.88,
+          "scale": 1.3062,
+          "rotation_deg": 18.07,
+          "distance_m": 0.6353,
+          "brightness": 1.178,
+          "contrast": -1.0,
+          "blur_sigma": 0.67,
+          "jpeg_quality": 85,
+          "shading": 0.1
+        },
+        "index": 8
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 136,
+        "inlier_ratio": 0.7861,
+        "matches": 173,
+        "confidence": 0.9661,
+        "ncc": 0.9616,
+        "reproj_px": 0.93,
+        "time_ms": 74.95,
+        "error_mean_px": 0.35,
+        "error_p95_px": 0.474,
+        "error_max_px": 0.505,
+        "reason": "",
+        "timings_ms": {
+          "orb": 49.03,
+          "akaze": 64.14,
+          "total": 74.92
+        },
+        "meta": {
+          "tilt_deg": 3.01,
+          "scale": 0.7339,
+          "rotation_deg": 14.02,
+          "distance_m": 1.0851,
+          "brightness": 0.932,
+          "contrast": -16.1,
+          "blur_sigma": 0.1,
+          "jpeg_quality": 81,
+          "shading": 0.1
+        },
+        "index": 9
+      }
+    ],
+    "passed": true
+  },
+  "no_markers": {
+    "frames": 10,
+    "success": 10,
+    "success_rate": 1.0,
+    "error_mean_px": 1.04,
+    "items": [
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 276,
+        "inlier_ratio": 0.9231,
+        "matches": 299,
+        "confidence": 0.9657,
+        "ncc": 0.7851,
+        "reproj_px": 0.94,
+        "time_ms": 83.81,
+        "error_mean_px": 1.11,
+        "error_p95_px": 2.171,
+        "error_max_px": 3.628,
+        "reason": "",
+        "timings_ms": {
+          "orb": 54.26,
+          "akaze": 72.35,
+          "total": 83.44
+        },
+        "meta": {
+          "tilt_deg": 0.84,
+          "scale": 0.8636,
+          "rotation_deg": 14.15,
+          "distance_m": 0.9248,
+          "brightness": 1.086,
+          "contrast": -21.15,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 0
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 383,
+        "inlier_ratio": 0.8907,
+        "matches": 430,
+        "confidence": 0.9613,
+        "ncc": 0.6653,
+        "reproj_px": 1.074,
+        "time_ms": 84.12,
+        "error_mean_px": 1.878,
+        "error_p95_px": 3.838,
+        "error_max_px": 8.172,
+        "reason": "",
+        "timings_ms": {
+          "orb": 55.43,
+          "akaze": 72.65,
+          "total": 83.88
+        },
+        "meta": {
+          "tilt_deg": 18.58,
+          "scale": 0.987,
+          "rotation_deg": -6.18,
+          "distance_m": 0.7067,
+          "brightness": 0.996,
+          "contrast": -5.12,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 1
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 496,
+        "inlier_ratio": 0.7886,
+        "matches": 629,
+        "confidence": 0.9616,
+        "ncc": 0.8928,
+        "reproj_px": 1.067,
+        "time_ms": 91.89,
+        "error_mean_px": 1.556,
+        "error_p95_px": 2.888,
+        "error_max_px": 3.168,
+        "reason": "",
+        "timings_ms": {
+          "orb": 45.13,
+          "akaze": 79.87,
+          "total": 91.84
+        },
+        "meta": {
+          "tilt_deg": 1.06,
+          "scale": 1.3732,
+          "rotation_deg": -7.36,
+          "distance_m": 0.5186,
+          "brightness": 1.005,
+          "contrast": 10.34,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 2
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 450,
+        "inlier_ratio": 0.8539,
+        "matches": 527,
+        "confidence": 0.9702,
+        "ncc": 0.9101,
+        "reproj_px": 0.806,
+        "time_ms": 80.61,
+        "error_mean_px": 0.477,
+        "error_p95_px": 0.63,
+        "error_max_px": 0.996,
+        "reason": "",
+        "timings_ms": {
+          "orb": 45.38,
+          "akaze": 69.15,
+          "total": 80.23
+        },
+        "meta": {
+          "tilt_deg": 11.57,
+          "scale": 0.7574,
+          "rotation_deg": 1.58,
+          "distance_m": 0.8194,
+          "brightness": 1.064,
+          "contrast": -9.55,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 3
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 435,
+        "inlier_ratio": 0.9335,
+        "matches": 466,
+        "confidence": 0.9674,
+        "ncc": 0.8462,
+        "reproj_px": 0.888,
+        "time_ms": 82.69,
+        "error_mean_px": 0.944,
+        "error_p95_px": 2.199,
+        "error_max_px": 2.319,
+        "reason": "",
+        "timings_ms": {
+          "orb": 50.16,
+          "akaze": 69.97,
+          "total": 81.6
+        },
+        "meta": {
+          "tilt_deg": 12.34,
+          "scale": 0.8488,
+          "rotation_deg": -2.53,
+          "distance_m": 0.7494,
+          "brightness": 1.001,
+          "contrast": -20.01,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 4
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 361,
+        "inlier_ratio": 0.8186,
+        "matches": 441,
+        "confidence": 0.9657,
+        "ncc": 0.9201,
+        "reproj_px": 0.942,
+        "time_ms": 81.35,
+        "error_mean_px": 0.435,
+        "error_p95_px": 0.803,
+        "error_max_px": 0.891,
+        "reason": "",
+        "timings_ms": {
+          "orb": 50.9,
+          "akaze": 70.1,
+          "total": 81.3
+        },
+        "meta": {
+          "tilt_deg": 4.8,
+          "scale": 1.0269,
+          "rotation_deg": -12.12,
+          "distance_m": 0.7533,
+          "brightness": 1.118,
+          "contrast": -8.64,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 5
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 367,
+        "inlier_ratio": 0.9062,
+        "matches": 405,
+        "confidence": 0.9658,
+        "ncc": 0.8421,
+        "reproj_px": 0.938,
+        "time_ms": 71.67,
+        "error_mean_px": 1.033,
+        "error_p95_px": 2.723,
+        "error_max_px": 2.977,
+        "reason": "",
+        "timings_ms": {
+          "orb": 48.83,
+          "akaze": 60.31,
+          "total": 71.46
+        },
+        "meta": {
+          "tilt_deg": 6.87,
+          "scale": 0.9264,
+          "rotation_deg": -5.92,
+          "distance_m": 0.7476,
+          "brightness": 0.816,
+          "contrast": -3.57,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 6
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 141,
+        "inlier_ratio": 0.8246,
+        "matches": 171,
+        "confidence": 0.9674,
+        "ncc": 0.8342,
+        "reproj_px": 0.891,
+        "time_ms": 73.84,
+        "error_mean_px": 0.661,
+        "error_p95_px": 0.931,
+        "error_max_px": 1.556,
+        "reason": "",
+        "timings_ms": {
+          "orb": 41.67,
+          "akaze": 63.78,
+          "total": 73.8
+        },
+        "meta": {
+          "tilt_deg": 17.37,
+          "scale": 0.719,
+          "rotation_deg": 13.58,
+          "distance_m": 1.0801,
+          "brightness": 1.157,
+          "contrast": -7.56,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 7
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 180,
+        "inlier_ratio": 0.9375,
+        "matches": 192,
+        "confidence": 0.965,
+        "ncc": 0.6532,
+        "reproj_px": 0.961,
+        "time_ms": 74.66,
+        "error_mean_px": 1.591,
+        "error_p95_px": 3.809,
+        "error_max_px": 4.92,
+        "reason": "",
+        "timings_ms": {
+          "orb": 41.36,
+          "akaze": 63.11,
+          "total": 74.62
+        },
+        "meta": {
+          "tilt_deg": 15.68,
+          "scale": 0.6633,
+          "rotation_deg": 6.6,
+          "distance_m": 1.0536,
+          "brightness": 0.801,
+          "contrast": 20.33,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 8
+      },
+      {
+        "ok": true,
+        "method": "orb",
+        "inliers": 827,
+        "inlier_ratio": 0.8845,
+        "matches": 935,
+        "confidence": 0.9648,
+        "ncc": 0.9277,
+        "reproj_px": 0.967,
+        "time_ms": 80.19,
+        "error_mean_px": 0.714,
+        "error_p95_px": 1.355,
+        "error_max_px": 1.4,
+        "reason": "",
+        "timings_ms": {
+          "orb": 50.13,
+          "akaze": 66.91,
+          "total": 79.57
+        },
+        "meta": {
+          "tilt_deg": 11.69,
+          "scale": 1.2982,
+          "rotation_deg": 9.9,
+          "distance_m": 0.5665,
+          "brightness": 1.035,
+          "contrast": -0.61,
+          "blur_sigma": 0.0,
+          "jpeg_quality": 90,
+          "shading": 0.0
+        },
+        "index": 9
+      }
+    ],
+    "passed": true
+  },
+  "timing": {
+    "mean": 101.11,
+    "p50": 99.955,
+    "p95": 123.9755,
+    "min": 75.66,
+    "max": 166.06,
+    "fps_p50": 10.0,
+    "fps_p95": 8.07
+  },
+  "samples": [
+    "samples/01_reference.png",
+    "samples/02_frame.png",
+    "samples/03_matches.png",
+    "samples/04_zones.png",
+    "samples/05_partial_overlap.png",
+    "samples/06_rejected_random.png"
+  ],
+  "verdict": {
+    "demo_ready": true,
+    "production_ready": false,
+    "notes": [
+      "Синтетика с тем же эталоном — верхняя граница качества; реальное оборудование требует отдельного эталонного кадра с того же ракурса.",
+      "Уверенность/порог отказов откалиброваны на этих данных; на реальной сцене нужен прогон и, возможно, подстройка min_ncc.",
+      "Маркеры не используются: проверка no_markers показывает работу без них."
+    ]
+  }
+}

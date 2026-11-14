@@ -1,0 +1,68 @@
+{
+  "component": "pump",
+  "n_train_images": 36,
+  "n_pool_patches": 9000,
+  "n_bank_patches": 180,
+  "aggregation": "topk_area",
+  "topk": 16,
+  "topk_frac": 0.01,
+  "tta": true,
+  "backbone": "resnet18",
+  "input_size": 320,
+  "layers": [
+    "layer2",
+    "layer3"
+  ],
+  "patch_size": 3,
+  "feature_dim": 384,
+  "backbone_weights": "IMAGENET1K_V1",
+  "device": "cuda",
+  "calib_n": 30,
+  "patch_thr_q": 0.99,
+  "patch_thr": 3.0899593830108643,
+  "topk_ref_q95": 3.2487475752830504,
+  "area_ref_q95": 0.011875,
+  "calib_score_mean": 0.9154449508600708,
+  "calib_score_std": 0.05002162091388587,
+  "calib_score_p50": 0.914804208935978,
+  "calib_score_p95": 0.9952656382899078,
+  "calib_score_p99": 1.0108701896033903,
+  "calib_topk_mean": 3.2123116970062258,
+  "calib_area_mean": 0.01,
+  "threshold_q95": 1.186332,
+  "threshold_q99": 1.186332,
+  "area_patch_quantile": 0.99,
+  "bank_ratio": 0.02,
+  "bank_max": 1200,
+  "max_patches_per_image": 250,
+  "seed": 0,
+  "version": "2.0",
+  "threshold_q95_prev": 0.9952656626701355,
+  "threshold_q99_prev": 1.0108702182769775,
+  "board_calibration": {
+    "threshold_q95": 1.186332,
+    "threshold_q99": 1.186332,
+    "calib_clean_max": 1.078483,
+    "holdout_clean_max": 1.132728,
+    "holdout_defect_min": 36.938717,
+    "margin": 1.1,
+    "n_calib_clean": 20,
+    "n_holdout_clean": 20,
+    "n_holdout_defect": 20,
+    "frame_size": [
+      2560,
+      1920
+    ],
+    "tilt_deg_range": [
+      0.0,
+      20.0
+    ],
+    "scale_range": [
+      0.7,
+      1.0
+    ],
+    "seed_calib": 20261114,
+    "seed_holdout": 20261214,
+    "pose": "gt_homography"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "components": [
+    "coupling_guard",
+    "flange",
+    "manometer",
+    "motor",
+    "pump"
+  ],
+  "version": "2.0",
+  "files": {
+    "motor": "motor.npz",
+    "coupling_guard": "coupling_guard.npz",
+    "pump": "pump.npz",
+    "flange": "flange.npz",
+    "manometer": "manometer.npz"
+  }
+}

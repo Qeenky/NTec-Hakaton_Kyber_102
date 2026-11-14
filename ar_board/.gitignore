@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+out/synthetic/
+out_identity/
+out/photo_check/
+out/_preview*.png
+out/_demo_photo.jpg

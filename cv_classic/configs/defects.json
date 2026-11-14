@@ -1,0 +1,122 @@
+{
+  "schema": "cv_classic.defects/v1",
+  "_comment": "Пороги и веса визуальных детекторов дефектов. Все значения подобраны на train-половине синтетики (scripts/make_defect_samples.py + scripts/eval_defects.py) при ограничении FPR на чистых негативах <= 10%. Единицы: доли 0..1, если не указано иное; HSV как в OpenCV: H 0..179 (градусы/2), S и V 0..255 (в коде нормируются к 0..1).",
+  "common": {
+    "_comment": "max_side - ROI уменьшается до этой стороны (скорость и стабильность статистик). min_side_px - меньше считается битым ROI. flat_std - если std яркости меньше, текстуры нет и дефект не виден (score=0, error=None). edge_low/high - Canny на размытом изображении.",
+    "max_side": 384,
+    "min_side_px": 24,
+    "flat_std": 1.5,
+    "edge_low": 40,
+    "edge_high": 110,
+    "flat_confidence": 0.3,
+    "confidence_base": 0.45,
+    "confidence_sep_scale": 0.25,
+    "confidence_support_floor": 0.85,
+    "support_min_frac": 0.01
+  },
+  "rust": {
+    "_comment": "Коррозия. hue 3..26 в OpenCV = 6..52 градусов (коричнево-оранжевый). sat/val - рабочий диапазон. warm_min - минимум R-B, чтобы серый металл не попадал. frac_full - доля маски, при которой признак площади уже максимален. frac_max - почти однотонная рыжая ROI скорее краска, чем коррозия. texture_scale - прирост плотности Canny внутри маски относительно фона. grad_start/scale - прирост средней величины градиента внутри маски (шершавость); hf_start/scale - прирост high-pass std (мелкая зернистость). shape_scale - превышение площади выпуклой оболочки над площадью контура (неровные края). chroma_scale - прирост насыщенности внутри маски.",
+    "threshold": 0.5,
+    "hue": [
+      3,
+      26
+    ],
+    "sat": [
+      0.3,
+      1.0
+    ],
+    "val": [
+      0.08,
+      0.85
+    ],
+    "warm_min": 18,
+    "min_component_frac": 0.002,
+    "frac_full": 0.06,
+    "frac_max": 0.8,
+    "frac_taper": 0.2,
+    "texture_scale": 0.1,
+    "grad_start": 1.35,
+    "grad_scale": 1.2,
+    "hf_start": 1.35,
+    "hf_scale": 0.9,
+    "shape_scale": 0.3,
+    "chroma_scale": 0.25,
+    "weights": {
+      "_comment": "Текстура (grad+hf) весит больше площади: именно шершавость отличает ржавчину от ровной рыжей краски. Canny - вспомогательный, он чувствителен к порогу.",
+      "frac": 0.22,
+      "edge": 0.12,
+      "grad": 0.2,
+      "hf": 0.18,
+      "shape": 0.14,
+      "chroma": 0.14
+    }
+  },
+  "oil": {
+    "_comment": "Масло/подтёк. Тёмная маска: V ниже медианы ROI минимум на min_drop и ниже med - mad_k*MAD. area_full - доля, с которой признак площади максимален; area_max/area_decay - штраф за слишком большую тёмную область (общая тень/недосвет). elong_start/elong_scale - удлинение пятна по моментам. vert_floor - вклад вытянутости вдоль гравитации (вертикали). glint_scale - превышение p95 яркости внутри пятна над фоном (мокрый блеск). spread_start/scale - внутренний размах V (p95-p05): у равномерной тени маленький. boundary_* - отношение градиента на кромке к среднему градиенту ROI: у масла кромка резче.",
+    "threshold": 0.95,
+    "blur_sigma": 2.0,
+    "mad_k": 2.0,
+    "min_drop": 0.1,
+    "min_component_frac": 0.002,
+    "fill_frac": 0.05,
+    "area_full": 0.05,
+    "area_max": 0.55,
+    "area_decay": 0.25,
+    "elong_start": 1.25,
+    "elong_scale": 1.5,
+    "vert_floor": 0.55,
+    "glint_min_rise": 0.16,
+    "glint_min_ratio": 0.004,
+    "glint_max_ratio": 0.6,
+    "glint_start": 0.01,
+    "glint_scale": 0.06,
+    "spread_start": 0.1,
+    "spread_scale": 0.25,
+    "boundary_start": 1.0,
+    "boundary_scale": 1.2,
+    "weights": {
+      "_comment": "Глянец и внутренний размах яркости - главные отличия от тени; форма и площадь - вспомогательные.",
+      "area": 0.18,
+      "shape": 0.22,
+      "glint": 0.24,
+      "spread": 0.2,
+      "boundary": 0.16
+    }
+  },
+  "oxidation": {
+    "_comment": "Окисление клемм. min_drop - насколько V ниже медианы ROI, чтобы пиксель считался локально потемневшим. darkening_start/scale - фактическое потемнение относительно фона. min_sat_out - если фон почти серый (S ниже), относительная потеря насыщенности не считается (иначе делим на шум). desat_scale - потеря насыщенности (окислы серые/зеленоватые). grain_start/scale - прирост относительной энергии Лапласиана (мелкая зернистость). area_full/area_max/area_decay - площадь локального пятна; потемнение всей ROI - это не окисление, а недосвет. border_start/scale/penalty - штраф, если тёмная маска упирается в границы ROI (признак общей тени).",
+    "threshold": 0.52,
+    "min_drop": 0.14,
+    "min_component_frac": 0.002,
+    "area_full": 0.06,
+    "area_max": 0.65,
+    "area_decay": 0.25,
+    "darkening_start": 0.08,
+    "darkening_scale": 0.35,
+    "desat_scale": 0.35,
+    "min_sat_out": 0.06,
+    "grain_start": 1.1,
+    "grain_scale": 0.9,
+    "border_start": 0.15,
+    "border_scale": 0.35,
+    "border_penalty": 0.35,
+    "rust_like_hue": [
+      3,
+      26
+    ],
+    "rust_like_sat": 0.45,
+    "rust_like_start": 0.1,
+    "rust_like_scale": 0.3,
+    "rust_like_penalty": 0.6,
+    "boundary_start": 2.0,
+    "boundary_scale": 1.2,
+    "boundary_penalty": 0.5,
+    "weights": {
+      "_comment": "Зернистость весит много: тень и недосвет её не дают, а окисленная поверхность даёт. Потемнение есть и у тени, поэтому его вес снижен.",
+      "darkening": 0.3,
+      "desat": 0.2,
+      "grain": 0.28,
+      "area": 0.22
+    }
+  }
+}

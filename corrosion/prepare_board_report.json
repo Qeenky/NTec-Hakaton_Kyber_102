@@ -1,0 +1,134 @@
+{
+  "task": "кропы зон планшетов, синтетические перспективы",
+  "seed": 20261114,
+  "out_size": 640,
+  "margin": 0.06,
+  "box_inset": 0.05,
+  "perspectives_per_component": 20,
+  "train_perspectives": 16,
+  "boards": {
+    "clean": {
+      "dir": "D:\\NTec-Хакатон\\ar_board\\out_real",
+      "components": [
+        "coupling_guard",
+        "flange",
+        "manometer",
+        "motor",
+        "pump"
+      ],
+      "is_defect": false
+    },
+    "defect": {
+      "dir": "D:\\NTec-Хакатон\\ar_board\\out_defect",
+      "components": [
+        "coupling_guard",
+        "flange",
+        "motor",
+        "pump"
+      ],
+      "is_defect": true
+    }
+  },
+  "split": {
+    "train": {
+      "images": 144,
+      "boxes": 64,
+      "clean": 80,
+      "defect": 64
+    },
+    "val": {
+      "images": 36,
+      "boxes": 16,
+      "clean": 20,
+      "defect": 16
+    }
+  },
+  "per_component": {
+    "clean_motor": {
+      "tag": "clean",
+      "component": "motor",
+      "crop_hw": [
+        604,
+        857
+      ],
+      "is_defect": false
+    },
+    "clean_coupling_guard": {
+      "tag": "clean",
+      "component": "coupling_guard",
+      "crop_hw": [
+        268,
+        285
+      ],
+      "is_defect": false
+    },
+    "clean_pump": {
+      "tag": "clean",
+      "component": "pump",
+      "crop_hw": [
+        453,
+        453
+      ],
+      "is_defect": false
+    },
+    "clean_flange": {
+      "tag": "clean",
+      "component": "flange",
+      "crop_hw": [
+        254,
+        193
+      ],
+      "is_defect": false
+    },
+    "clean_manometer": {
+      "tag": "clean",
+      "component": "manometer",
+      "crop_hw": [
+        101,
+        101
+      ],
+      "is_defect": false
+    },
+    "defect_motor": {
+      "tag": "defect",
+      "component": "motor",
+      "crop_hw": [
+        891,
+        1221
+      ],
+      "is_defect": true
+    },
+    "defect_coupling_guard": {
+      "tag": "defect",
+      "component": "coupling_guard",
+      "crop_hw": [
+        336,
+        460
+      ],
+      "is_defect": true
+    },
+    "defect_pump": {
+      "tag": "defect",
+      "component": "pump",
+      "crop_hw": [
+        1042,
+        1160
+      ],
+      "is_defect": true
+    },
+    "defect_flange": {
+      "tag": "defect",
+      "component": "flange",
+      "crop_hw": [
+        436,
+        368
+      ],
+      "is_defect": true
+    }
+  },
+  "totals": {
+    "images": 180,
+    "boxes": 80
+  },
+  "note": "Разметка по факту 'дефектная доска': бокс на весь кроп зоны, не попиксельная локализация коррозии."
+}

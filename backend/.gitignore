@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.py[cod]
+data/app.db
+data/app.db-wal
+data/app.db-shm
+data/test_frame.jpg
+.pytest_cache/
+.env
+# демо-артефакты (резервные ролики)
+demo_*.mp4

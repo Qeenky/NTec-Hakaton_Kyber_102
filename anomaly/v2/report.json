@@ -1,0 +1,3020 @@
+{
+  "version": "2.0",
+  "generated": "2026-11-13 23:56:25",
+  "environment": {
+    "python": "3.10.11",
+    "torch": "2.14.1+cu126",
+    "cuda": true,
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 2060",
+    "opencv": "5.0.0"
+  },
+  "dataset": {
+    "components": [
+      "motor",
+      "coupling_guard",
+      "pump",
+      "flange",
+      "manometer"
+    ],
+    "n_clean": 60,
+    "n_defect": 40,
+    "n_train": 36,
+    "n_calib": 12,
+    "n_test_clean": 12,
+    "defect_types": {
+      "motor": [
+        "corrosion",
+        "oil_leak",
+        "crack",
+        "erosion"
+      ],
+      "pump": [
+        "corrosion",
+        "oil_leak",
+        "crack",
+        "erosion"
+      ],
+      "coupling_guard": [
+        "corrosion",
+        "oil_leak",
+        "missing_guard",
+        "crack"
+      ],
+      "flange": [
+        "corrosion",
+        "oil_leak",
+        "crack",
+        "erosion"
+      ],
+      "manometer": [
+        "corrosion",
+        "oil_leak",
+        "crack",
+        "erosion"
+      ]
+    },
+    "size": 512,
+    "note": "Дефекты синтетические: текстуры перенесены с фото других объектов (organizer_data/defects/_curated). Маски сохранены для pixel-level метрик."
+  },
+  "alignment": {
+    "n_views": 20,
+    "tilt_deg": 30.0,
+    "frame_size": [
+      1600,
+      1200
+    ],
+    "failed_detections": 0,
+    "corner_error_px_mean": 0.206,
+    "corner_error_px_max": 0.512,
+    "per_component": {
+      "motor": {
+        "ssim_raw_mean": 0.8801,
+        "ssim_raw_min": 0.7432,
+        "ssim_norm_mean": 0.9625,
+        "ssim_norm_min": 0.952,
+        "ssim_vs_ref_norm_min": 0.954,
+        "n_crops": 20
+      },
+      "coupling_guard": {
+        "ssim_raw_mean": 0.9001,
+        "ssim_raw_min": 0.7515,
+        "ssim_norm_mean": 0.9713,
+        "ssim_norm_min": 0.956,
+        "ssim_vs_ref_norm_min": 0.9638,
+        "n_crops": 20
+      },
+      "pump": {
+        "ssim_raw_mean": 0.8744,
+        "ssim_raw_min": 0.7517,
+        "ssim_norm_mean": 0.9527,
+        "ssim_norm_min": 0.9303,
+        "ssim_vs_ref_norm_min": 0.9323,
+        "n_crops": 20
+      },
+      "flange": {
+        "ssim_raw_mean": 0.9145,
+        "ssim_raw_min": 0.8264,
+        "ssim_norm_mean": 0.9723,
+        "ssim_norm_min": 0.9612,
+        "ssim_vs_ref_norm_min": 0.9605,
+        "n_crops": 20
+      },
+      "manometer": {
+        "ssim_raw_mean": 0.9605,
+        "ssim_raw_min": 0.9269,
+        "ssim_norm_mean": 0.9434,
+        "ssim_norm_min": 0.9236,
+        "ssim_vs_ref_norm_min": 0.9305,
+        "n_crops": 20
+      }
+    },
+    "ssim_norm_min_overall": 0.9236,
+    "passed_0_85": true,
+    "passed_0_85_norm": true
+  },
+  "ablations": [
+    {
+      "auroc_macro": 0.5813,
+      "auroc_macro_ci95": [
+        0.5004,
+        0.6542
+      ],
+      "auroc_pooled": 0.5907,
+      "precision": 0.9091,
+      "recall": 0.2,
+      "f1": 0.3279,
+      "fpr": 0.0667,
+      "per_component": {
+        "coupling_guard": {
+          "auroc": 0.6521,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 1.1198,
+          "score_defect_mean": 1.5403,
+          "threshold": 1.5623,
+          "precision": 0.9,
+          "recall": 0.45,
+          "f1": 0.6,
+          "fpr": 0.1667,
+          "tp": 18,
+          "fp": 2,
+          "tn": 10,
+          "fn": 22
+        },
+        "flange": {
+          "auroc": 0.6021,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.8272,
+          "score_defect_mean": 0.925,
+          "threshold": 1.5391,
+          "precision": 1.0,
+          "recall": 0.05,
+          "f1": 0.0952,
+          "fpr": 0.0,
+          "tp": 2,
+          "fp": 0,
+          "tn": 12,
+          "fn": 38
+        },
+        "manometer": {
+          "auroc": 0.4521,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 1.249,
+          "score_defect_mean": 1.2732,
+          "threshold": 1.4553,
+          "precision": 1.0,
+          "recall": 0.075,
+          "f1": 0.1395,
+          "fpr": 0.0,
+          "tp": 3,
+          "fp": 0,
+          "tn": 12,
+          "fn": 37
+        },
+        "motor": {
+          "auroc": 0.7125,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 1.0355,
+          "score_defect_mean": 1.3034,
+          "threshold": 1.4581,
+          "precision": 0.9167,
+          "recall": 0.275,
+          "f1": 0.4231,
+          "fpr": 0.0833,
+          "tp": 11,
+          "fp": 1,
+          "tn": 11,
+          "fn": 29
+        },
+        "pump": {
+          "auroc": 0.4875,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 1.2905,
+          "score_defect_mean": 1.3029,
+          "threshold": 1.7583,
+          "precision": 0.8571,
+          "recall": 0.15,
+          "f1": 0.2553,
+          "fpr": 0.0833,
+          "tp": 6,
+          "fp": 1,
+          "tn": 11,
+          "fn": 34
+        }
+      },
+      "auroc_paired": 0.5928,
+      "n_pairs": 200,
+      "config": "base_no_align_shared_max",
+      "aligned": false,
+      "shared_bank": true,
+      "aggregation": "max_rel",
+      "tta": false,
+      "seconds": 55.11
+    },
+    {
+      "auroc_macro": 0.9933,
+      "auroc_macro_ci95": [
+        0.9858,
+        0.9983
+      ],
+      "auroc_pooled": 0.9872,
+      "precision": 0.9881,
+      "recall": 0.83,
+      "f1": 0.9022,
+      "fpr": 0.0333,
+      "per_component": {
+        "coupling_guard": {
+          "auroc": 0.9938,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.9791,
+          "score_defect_mean": 1.8547,
+          "threshold": 1.0854,
+          "precision": 0.9524,
+          "recall": 1.0,
+          "f1": 0.9756,
+          "fpr": 0.1667,
+          "tp": 40,
+          "fp": 2,
+          "tn": 10,
+          "fn": 0
+        },
+        "flange": {
+          "auroc": 0.9979,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.7919,
+          "score_defect_mean": 1.863,
+          "threshold": 1.1619,
+          "precision": 1.0,
+          "recall": 0.975,
+          "f1": 0.9873,
+          "fpr": 0.0,
+          "tp": 39,
+          "fp": 0,
+          "tn": 12,
+          "fn": 1
+        },
+        "manometer": {
+          "auroc": 0.9938,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.5919,
+          "score_defect_mean": 1.7615,
+          "threshold": 1.0626,
+          "precision": 1.0,
+          "recall": 0.95,
+          "f1": 0.9744,
+          "fpr": 0.0,
+          "tp": 38,
+          "fp": 0,
+          "tn": 12,
+          "fn": 2
+        },
+        "motor": {
+          "auroc": 0.9875,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.9088,
+          "score_defect_mean": 1.5545,
+          "threshold": 1.6447,
+          "precision": 1.0,
+          "recall": 0.275,
+          "f1": 0.4314,
+          "fpr": 0.0,
+          "tp": 11,
+          "fp": 0,
+          "tn": 12,
+          "fn": 29
+        },
+        "pump": {
+          "auroc": 0.9938,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.8589,
+          "score_defect_mean": 1.6233,
+          "threshold": 1.1207,
+          "precision": 1.0,
+          "recall": 0.95,
+          "f1": 0.9744,
+          "fpr": 0.0,
+          "tp": 38,
+          "fp": 0,
+          "tn": 12,
+          "fn": 2
+        }
+      },
+      "auroc_paired": 0.9875,
+      "n_pairs": 200,
+      "config": "align_shared_max",
+      "aligned": true,
+      "shared_bank": true,
+      "aggregation": "max_rel",
+      "tta": false,
+      "seconds": 44.36
+    },
+    {
+      "auroc_macro": 0.9733,
+      "auroc_macro_ci95": [
+        0.9504,
+        0.9896
+      ],
+      "auroc_pooled": 0.974,
+      "precision": 0.9831,
+      "recall": 0.875,
+      "f1": 0.9259,
+      "fpr": 0.05,
+      "per_component": {
+        "coupling_guard": {
+          "auroc": 0.9771,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.8845,
+          "score_defect_mean": 1.9943,
+          "threshold": 1.1574,
+          "precision": 0.9512,
+          "recall": 0.975,
+          "f1": 0.963,
+          "fpr": 0.1667,
+          "tp": 39,
+          "fp": 2,
+          "tn": 10,
+          "fn": 1
+        },
+        "flange": {
+          "auroc": 0.9958,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.8385,
+          "score_defect_mean": 2.1901,
+          "threshold": 1.2508,
+          "precision": 1.0,
+          "recall": 0.975,
+          "f1": 0.9873,
+          "fpr": 0.0,
+          "tp": 39,
+          "fp": 0,
+          "tn": 12,
+          "fn": 1
+        },
+        "manometer": {
+          "auroc": 0.9833,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.9229,
+          "score_defect_mean": 2.5599,
+          "threshold": 1.6062,
+          "precision": 1.0,
+          "recall": 0.95,
+          "f1": 0.9744,
+          "fpr": 0.0,
+          "tp": 38,
+          "fp": 0,
+          "tn": 12,
+          "fn": 2
+        },
+        "motor": {
+          "auroc": 0.9688,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.8732,
+          "score_defect_mean": 1.5453,
+          "threshold": 1.4063,
+          "precision": 1.0,
+          "recall": 0.675,
+          "f1": 0.806,
+          "fpr": 0.0,
+          "tp": 27,
+          "fp": 0,
+          "tn": 12,
+          "fn": 13
+        },
+        "pump": {
+          "auroc": 0.9417,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 1.0279,
+          "score_defect_mean": 1.6274,
+          "threshold": 1.326,
+          "precision": 0.9697,
+          "recall": 0.8,
+          "f1": 0.8767,
+          "fpr": 0.0833,
+          "tp": 32,
+          "fp": 1,
+          "tn": 11,
+          "fn": 8
+        }
+      },
+      "auroc_paired": 0.9743,
+      "n_pairs": 200,
+      "config": "align_percomp_max",
+      "aligned": true,
+      "shared_bank": false,
+      "aggregation": "max_rel",
+      "tta": false,
+      "seconds": 13.77
+    },
+    {
+      "auroc_macro": 0.9838,
+      "auroc_macro_ci95": [
+        0.9675,
+        0.9954
+      ],
+      "auroc_pooled": 0.9818,
+      "precision": 0.9843,
+      "recall": 0.94,
+      "f1": 0.9616,
+      "fpr": 0.05,
+      "per_component": {
+        "coupling_guard": {
+          "auroc": 0.9896,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.6998,
+          "score_defect_mean": 2.7854,
+          "threshold": 0.9972,
+          "precision": 0.9756,
+          "recall": 1.0,
+          "f1": 0.9877,
+          "fpr": 0.0833,
+          "tp": 40,
+          "fp": 1,
+          "tn": 11,
+          "fn": 0
+        },
+        "flange": {
+          "auroc": 0.9896,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.6268,
+          "score_defect_mean": 2.2222,
+          "threshold": 0.995,
+          "precision": 1.0,
+          "recall": 0.975,
+          "f1": 0.9873,
+          "fpr": 0.0,
+          "tp": 39,
+          "fp": 0,
+          "tn": 12,
+          "fn": 1
+        },
+        "manometer": {
+          "auroc": 0.9688,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.7064,
+          "score_defect_mean": 1.8222,
+          "threshold": 0.99,
+          "precision": 0.973,
+          "recall": 0.9,
+          "f1": 0.9351,
+          "fpr": 0.0833,
+          "tp": 36,
+          "fp": 1,
+          "tn": 11,
+          "fn": 4
+        },
+        "motor": {
+          "auroc": 0.9729,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.6646,
+          "score_defect_mean": 1.8301,
+          "threshold": 0.9793,
+          "precision": 0.9737,
+          "recall": 0.925,
+          "f1": 0.9487,
+          "fpr": 0.0833,
+          "tp": 37,
+          "fp": 1,
+          "tn": 11,
+          "fn": 3
+        },
+        "pump": {
+          "auroc": 0.9979,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.6021,
+          "score_defect_mean": 1.3099,
+          "threshold": 1.0001,
+          "precision": 1.0,
+          "recall": 0.9,
+          "f1": 0.9474,
+          "fpr": 0.0,
+          "tp": 36,
+          "fp": 0,
+          "tn": 12,
+          "fn": 4
+        }
+      },
+      "auroc_paired": 0.9819,
+      "n_pairs": 200,
+      "config": "align_percomp_topk_area",
+      "aligned": true,
+      "shared_bank": false,
+      "aggregation": "topk_area",
+      "tta": false,
+      "seconds": 15.29
+    },
+    {
+      "auroc_macro": 0.9733,
+      "auroc_macro_ci95": [
+        0.9488,
+        0.9921
+      ],
+      "auroc_pooled": 0.9666,
+      "precision": 0.9781,
+      "recall": 0.895,
+      "f1": 0.9347,
+      "fpr": 0.0667,
+      "per_component": {
+        "coupling_guard": {
+          "auroc": 0.9938,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.8493,
+          "score_defect_mean": 2.9114,
+          "threshold": 0.9913,
+          "precision": 0.9756,
+          "recall": 1.0,
+          "f1": 0.9877,
+          "fpr": 0.0833,
+          "tp": 40,
+          "fp": 1,
+          "tn": 11,
+          "fn": 0
+        },
+        "flange": {
+          "auroc": 0.9812,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.6855,
+          "score_defect_mean": 2.0097,
+          "threshold": 1.0013,
+          "precision": 1.0,
+          "recall": 0.975,
+          "f1": 0.9873,
+          "fpr": 0.0,
+          "tp": 39,
+          "fp": 0,
+          "tn": 12,
+          "fn": 1
+        },
+        "manometer": {
+          "auroc": 0.9563,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.6388,
+          "score_defect_mean": 1.4012,
+          "threshold": 1.0003,
+          "precision": 0.9688,
+          "recall": 0.775,
+          "f1": 0.8611,
+          "fpr": 0.0833,
+          "tp": 31,
+          "fp": 1,
+          "tn": 11,
+          "fn": 9
+        },
+        "motor": {
+          "auroc": 0.9583,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.7524,
+          "score_defect_mean": 1.7374,
+          "threshold": 0.9898,
+          "precision": 0.9737,
+          "recall": 0.925,
+          "f1": 0.9487,
+          "fpr": 0.0833,
+          "tp": 37,
+          "fp": 1,
+          "tn": 11,
+          "fn": 3
+        },
+        "pump": {
+          "auroc": 0.9771,
+          "n_clean": 12,
+          "n_defect": 40,
+          "score_clean_mean": 0.6585,
+          "score_defect_mean": 1.316,
+          "threshold": 1.0,
+          "precision": 0.9697,
+          "recall": 0.8,
+          "f1": 0.8767,
+          "fpr": 0.0833,
+          "tp": 32,
+          "fp": 1,
+          "tn": 11,
+          "fn": 8
+        }
+      },
+      "auroc_paired": 0.9667,
+      "n_pairs": 200,
+      "config": "align_percomp_topk_area_tta",
+      "aligned": true,
+      "shared_bank": false,
+      "aggregation": "topk_area",
+      "tta": true,
+      "seconds": 20.62
+    }
+  ],
+  "final_model": {
+    "config": "align_percomp_topk_area_tta",
+    "models_dir": "models",
+    "calibration": {
+      "n_calib_views": 30,
+      "frame_size": [
+        2560,
+        1920
+      ],
+      "per_component": {
+        "motor": {
+          "threshold_q95": 0.9993,
+          "threshold_q99": 1.129,
+          "calib_n": 30,
+          "calib_score_mean": 0.8585,
+          "calib_score_p95": 0.9993
+        },
+        "coupling_guard": {
+          "threshold_q95": 0.9952,
+          "threshold_q99": 1.2455,
+          "calib_n": 30,
+          "calib_score_mean": 0.8478,
+          "calib_score_p95": 0.9952
+        },
+        "pump": {
+          "threshold_q95": 0.9953,
+          "threshold_q99": 1.0109,
+          "calib_n": 30,
+          "calib_score_mean": 0.9154,
+          "calib_score_p95": 0.9953
+        },
+        "flange": {
+          "threshold_q95": 0.9999,
+          "threshold_q99": 1.0535,
+          "calib_n": 30,
+          "calib_score_mean": 0.8803,
+          "calib_score_p95": 0.9999
+        },
+        "manometer": {
+          "threshold_q95": 0.9975,
+          "threshold_q99": 1.1362,
+          "calib_n": 30,
+          "calib_score_mean": 0.6368,
+          "calib_score_p95": 0.9975
+        }
+      }
+    },
+    "per_component": {
+      "motor": {
+        "threshold_q95": 0.9993,
+        "threshold_q99": 1.129,
+        "patch_thr": 3.0491,
+        "topk": 16,
+        "n_bank": 180
+      },
+      "coupling_guard": {
+        "threshold_q95": 0.9952,
+        "threshold_q99": 1.2455,
+        "patch_thr": 2.9651,
+        "topk": 16,
+        "n_bank": 180
+      },
+      "pump": {
+        "threshold_q95": 0.9953,
+        "threshold_q99": 1.0109,
+        "patch_thr": 3.09,
+        "topk": 16,
+        "n_bank": 180
+      },
+      "flange": {
+        "threshold_q95": 0.9999,
+        "threshold_q99": 1.0535,
+        "patch_thr": 2.9757,
+        "topk": 16,
+        "n_bank": 180
+      },
+      "manometer": {
+        "threshold_q95": 0.9975,
+        "threshold_q99": 1.1362,
+        "patch_thr": 2.6724,
+        "topk": 16,
+        "n_bank": 180
+      }
+    }
+  },
+  "pixel_localization": {
+    "n_samples": 200,
+    "pixel_auroc_macro": 0.9757,
+    "energy_ratio_median": 1.465,
+    "by_defect_type": {
+      "corrosion": {
+        "pixel_auroc": 0.9921,
+        "n": 50
+      },
+      "oil_leak": {
+        "pixel_auroc": 0.9804,
+        "n": 50
+      },
+      "crack": {
+        "pixel_auroc": 0.9695,
+        "n": 50
+      },
+      "erosion": {
+        "pixel_auroc": 0.9909,
+        "n": 40
+      },
+      "missing_guard": {
+        "pixel_auroc": 0.8419,
+        "n": 10
+      }
+    },
+    "by_component": {
+      "motor": {
+        "pixel_auroc": 0.9622,
+        "n": 40
+      },
+      "coupling_guard": {
+        "pixel_auroc": 0.9485,
+        "n": 40
+      },
+      "pump": {
+        "pixel_auroc": 0.9806,
+        "n": 40
+      },
+      "flange": {
+        "pixel_auroc": 0.9901,
+        "n": 40
+      },
+      "manometer": {
+        "pixel_auroc": 0.9972,
+        "n": 40
+      }
+    },
+    "per_sample": [
+      {
+        "component": "motor",
+        "id": "motor_defect_000",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9958197129755412,
+        "energy_in_mask": 1.4191795587539673,
+        "mask_frac": 0.045917510986328125
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_001",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9963417492660714,
+        "energy_in_mask": 1.4769645929336548,
+        "mask_frac": 0.035980224609375
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_002",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9973521558010426,
+        "energy_in_mask": 1.4781752824783325,
+        "mask_frac": 0.06146240234375
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_003",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9972147941278702,
+        "energy_in_mask": 1.4223371744155884,
+        "mask_frac": 0.052974700927734375
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_004",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9925769439389468,
+        "energy_in_mask": 1.398937702178955,
+        "mask_frac": 0.0292205810546875
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_005",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9301321571862571,
+        "energy_in_mask": 1.2573609352111816,
+        "mask_frac": 0.0931549072265625
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_006",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9966433389576516,
+        "energy_in_mask": 1.3932678699493408,
+        "mask_frac": 0.028652191162109375
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_007",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9923159835681274,
+        "energy_in_mask": 1.4245518445968628,
+        "mask_frac": 0.056606292724609375
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_008",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9977625581310141,
+        "energy_in_mask": 1.4469832181930542,
+        "mask_frac": 0.04328155517578125
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_009",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.999053218658753,
+        "energy_in_mask": 1.6221932172775269,
+        "mask_frac": 0.0289154052734375
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_010",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9789663594763756,
+        "energy_in_mask": 1.3445731401443481,
+        "mask_frac": 0.0692138671875
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_011",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9207049177791873,
+        "energy_in_mask": 1.2174263000488281,
+        "mask_frac": 0.031341552734375
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_012",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9845426367200868,
+        "energy_in_mask": 1.2951459884643555,
+        "mask_frac": 0.038852691650390625
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_013",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9725974496956143,
+        "energy_in_mask": 1.299501657485962,
+        "mask_frac": 0.04143524169921875
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_014",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9884596221254117,
+        "energy_in_mask": 1.3712292909622192,
+        "mask_frac": 0.01769256591796875
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_015",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.989823067353622,
+        "energy_in_mask": 1.3350286483764648,
+        "mask_frac": 0.02639007568359375
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_016",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9931349386300534,
+        "energy_in_mask": 1.4241632223129272,
+        "mask_frac": 0.022216796875
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_017",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9799731334526794,
+        "energy_in_mask": 1.3493226766586304,
+        "mask_frac": 0.02974700927734375
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_018",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9644106088979685,
+        "energy_in_mask": 1.2705867290496826,
+        "mask_frac": 0.043750762939453125
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_019",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9669989543966555,
+        "energy_in_mask": 1.3494195938110352,
+        "mask_frac": 0.05400848388671875
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_020",
+        "defect_type": "crack",
+        "pixel_auroc": 0.995053809993399,
+        "energy_in_mask": 1.5641725063323975,
+        "mask_frac": 0.00711822509765625
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_021",
+        "defect_type": "crack",
+        "pixel_auroc": 0.7886093509029803,
+        "energy_in_mask": 1.1502538919448853,
+        "mask_frac": 0.008342742919921875
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_022",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9973304554898204,
+        "energy_in_mask": 1.4861021041870117,
+        "mask_frac": 0.0059661865234375
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_023",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9792832114096023,
+        "energy_in_mask": 1.3572252988815308,
+        "mask_frac": 0.007053375244140625
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_024",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9207401123288563,
+        "energy_in_mask": 1.215253472328186,
+        "mask_frac": 0.00618743896484375
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_025",
+        "defect_type": "crack",
+        "pixel_auroc": 0.970195316021288,
+        "energy_in_mask": 1.3705912828445435,
+        "mask_frac": 0.006778717041015625
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_026",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9692323984808647,
+        "energy_in_mask": 1.2820994853973389,
+        "mask_frac": 0.005352020263671875
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_027",
+        "defect_type": "crack",
+        "pixel_auroc": 0.994093199414571,
+        "energy_in_mask": 1.5872007608413696,
+        "mask_frac": 0.0069732666015625
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_028",
+        "defect_type": "crack",
+        "pixel_auroc": 0.3718778667914591,
+        "energy_in_mask": 0.9582169055938721,
+        "mask_frac": 0.004486083984375
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_029",
+        "defect_type": "crack",
+        "pixel_auroc": 0.988118725139492,
+        "energy_in_mask": 1.432636022567749,
+        "mask_frac": 0.006778717041015625
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_030",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.993803435624469,
+        "energy_in_mask": 1.3625459671020508,
+        "mask_frac": 0.024669647216796875
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_031",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9896226944791889,
+        "energy_in_mask": 1.3654696941375732,
+        "mask_frac": 0.044780731201171875
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_032",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9957227490223842,
+        "energy_in_mask": 1.4159048795700073,
+        "mask_frac": 0.024127960205078125
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_033",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9692748170722275,
+        "energy_in_mask": 1.3087931871414185,
+        "mask_frac": 0.03107452392578125
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_034",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9958842323230639,
+        "energy_in_mask": 1.373243808746338,
+        "mask_frac": 0.0447235107421875
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_035",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9820302698915415,
+        "energy_in_mask": 1.3366786241531372,
+        "mask_frac": 0.05027008056640625
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_036",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9960353021794529,
+        "energy_in_mask": 1.37400221824646,
+        "mask_frac": 0.049755096435546875
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_037",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.969937106918239,
+        "energy_in_mask": 1.3009343147277832,
+        "mask_frac": 0.029506683349609375
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_038",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9927821732061967,
+        "energy_in_mask": 1.3749061822891235,
+        "mask_frac": 0.0467681884765625
+      },
+      {
+        "component": "motor",
+        "id": "motor_defect_039",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9954989348252193,
+        "energy_in_mask": 1.3736947774887085,
+        "mask_frac": 0.0440521240234375
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_000",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9771023964957094,
+        "energy_in_mask": 1.3067668676376343,
+        "mask_frac": 0.05690765380859375
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_001",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9952637303705113,
+        "energy_in_mask": 1.5474002361297607,
+        "mask_frac": 0.04290008544921875
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_002",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9955394886792431,
+        "energy_in_mask": 1.4875212907791138,
+        "mask_frac": 0.052989959716796875
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_003",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9966715420371185,
+        "energy_in_mask": 1.646112322807312,
+        "mask_frac": 0.032978057861328125
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_004",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9985847637388182,
+        "energy_in_mask": 1.6944164037704468,
+        "mask_frac": 0.046558380126953125
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_005",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9795745709451293,
+        "energy_in_mask": 1.3365228176116943,
+        "mask_frac": 0.026611328125
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_006",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9903266061298142,
+        "energy_in_mask": 1.4237827062606812,
+        "mask_frac": 0.07019424438476562
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_007",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9981600440977063,
+        "energy_in_mask": 1.4996386766433716,
+        "mask_frac": 0.037372589111328125
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_008",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9948448509948898,
+        "energy_in_mask": 1.54497492313385,
+        "mask_frac": 0.05410003662109375
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_009",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.996983234811412,
+        "energy_in_mask": 1.4644323587417603,
+        "mask_frac": 0.09550857543945312
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_010",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9957062215636258,
+        "energy_in_mask": 1.5187599658966064,
+        "mask_frac": 0.021595001220703125
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_011",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9701077362215492,
+        "energy_in_mask": 1.3386656045913696,
+        "mask_frac": 0.0378570556640625
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_012",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9815943409803454,
+        "energy_in_mask": 1.3801677227020264,
+        "mask_frac": 0.031520843505859375
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_013",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9370893291654895,
+        "energy_in_mask": 1.2619675397872925,
+        "mask_frac": 0.04779815673828125
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_014",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9664243931431431,
+        "energy_in_mask": 1.3117517232894897,
+        "mask_frac": 0.023860931396484375
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_015",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.991478378875636,
+        "energy_in_mask": 1.4422576427459717,
+        "mask_frac": 0.043674468994140625
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_016",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9884756940600199,
+        "energy_in_mask": 1.4313961267471313,
+        "mask_frac": 0.04770660400390625
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_017",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9901504849786631,
+        "energy_in_mask": 1.4015203714370728,
+        "mask_frac": 0.03594207763671875
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_018",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9616989093185672,
+        "energy_in_mask": 1.298152208328247,
+        "mask_frac": 0.047901153564453125
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_019",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9906250703021304,
+        "energy_in_mask": 1.377971887588501,
+        "mask_frac": 0.0137481689453125
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_020",
+        "defect_type": "missing_guard",
+        "pixel_auroc": 0.8245286655680127,
+        "energy_in_mask": 1.1830711364746094,
+        "mask_frac": 0.16661453247070312
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_021",
+        "defect_type": "missing_guard",
+        "pixel_auroc": 0.8232233278065046,
+        "energy_in_mask": 1.1858445405960083,
+        "mask_frac": 0.17305374145507812
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_022",
+        "defect_type": "missing_guard",
+        "pixel_auroc": 0.8821215504997288,
+        "energy_in_mask": 1.241469144821167,
+        "mask_frac": 0.19482421875
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_023",
+        "defect_type": "missing_guard",
+        "pixel_auroc": 0.8597396251884544,
+        "energy_in_mask": 1.2015291452407837,
+        "mask_frac": 0.18629837036132812
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_024",
+        "defect_type": "missing_guard",
+        "pixel_auroc": 0.7697352115146618,
+        "energy_in_mask": 1.1469050645828247,
+        "mask_frac": 0.2017822265625
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_025",
+        "defect_type": "missing_guard",
+        "pixel_auroc": 0.8861965606302358,
+        "energy_in_mask": 1.2236820459365845,
+        "mask_frac": 0.1746826171875
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_026",
+        "defect_type": "missing_guard",
+        "pixel_auroc": 0.8521149505222563,
+        "energy_in_mask": 1.2238519191741943,
+        "mask_frac": 0.11415481567382812
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_027",
+        "defect_type": "missing_guard",
+        "pixel_auroc": 0.8387982964014923,
+        "energy_in_mask": 1.1989530324935913,
+        "mask_frac": 0.1376953125
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_028",
+        "defect_type": "missing_guard",
+        "pixel_auroc": 0.8531981060615831,
+        "energy_in_mask": 1.2123522758483887,
+        "mask_frac": 0.12495803833007812
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_029",
+        "defect_type": "missing_guard",
+        "pixel_auroc": 0.8290134046162775,
+        "energy_in_mask": 1.183227777481079,
+        "mask_frac": 0.15718460083007812
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_030",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9036891187649386,
+        "energy_in_mask": 1.2377674579620361,
+        "mask_frac": 0.005672454833984375
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_031",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9969446826758147,
+        "energy_in_mask": 1.5897835493087769,
+        "mask_frac": 0.002933502197265625
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_032",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9974289251140537,
+        "energy_in_mask": 1.8497697114944458,
+        "mask_frac": 0.002460479736328125
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_033",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9948449674842933,
+        "energy_in_mask": 1.4123709201812744,
+        "mask_frac": 0.00714874267578125
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_034",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9680680518111902,
+        "energy_in_mask": 1.2928812503814697,
+        "mask_frac": 0.005153656005859375
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_035",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9965618552140796,
+        "energy_in_mask": 1.5613276958465576,
+        "mask_frac": 0.005359649658203125
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_036",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9897355591212046,
+        "energy_in_mask": 1.5880619287490845,
+        "mask_frac": 0.01105499267578125
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_037",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9863843688362919,
+        "energy_in_mask": 1.4303327798843384,
+        "mask_frac": 0.0096588134765625
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_038",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9949311599877684,
+        "energy_in_mask": 1.6302319765090942,
+        "mask_frac": 0.007904052734375
+      },
+      {
+        "component": "coupling_guard",
+        "id": "coupling_guard_defect_039",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9961350563490644,
+        "energy_in_mask": 1.5956788063049316,
+        "mask_frac": 0.004425048828125
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_000",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9959803041151494,
+        "energy_in_mask": 1.492038607597351,
+        "mask_frac": 0.0301971435546875
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_001",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9933884050731877,
+        "energy_in_mask": 1.3470593690872192,
+        "mask_frac": 0.02280426025390625
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_002",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9988495489591955,
+        "energy_in_mask": 1.4181358814239502,
+        "mask_frac": 0.040618896484375
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_003",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9986286086664559,
+        "energy_in_mask": 1.503030776977539,
+        "mask_frac": 0.0246124267578125
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_004",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9969791324875132,
+        "energy_in_mask": 1.4538159370422363,
+        "mask_frac": 0.020442962646484375
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_005",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9939263038052896,
+        "energy_in_mask": 1.352483868598938,
+        "mask_frac": 0.041820526123046875
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_006",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9992520544846768,
+        "energy_in_mask": 1.4649944305419922,
+        "mask_frac": 0.0255126953125
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_007",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.993275481942917,
+        "energy_in_mask": 1.419089436531067,
+        "mask_frac": 0.026432037353515625
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_008",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9834724108714689,
+        "energy_in_mask": 1.3687063455581665,
+        "mask_frac": 0.03388214111328125
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_009",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9930742004107981,
+        "energy_in_mask": 1.396552562713623,
+        "mask_frac": 0.02918243408203125
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_010",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9958673307590427,
+        "energy_in_mask": 1.5043044090270996,
+        "mask_frac": 0.020111083984375
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_011",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.8733955278182632,
+        "energy_in_mask": 1.1466392278671265,
+        "mask_frac": 0.0600738525390625
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_012",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.990767215142914,
+        "energy_in_mask": 1.46302330493927,
+        "mask_frac": 0.018016815185546875
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_013",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9918244357922927,
+        "energy_in_mask": 1.4358997344970703,
+        "mask_frac": 0.012786865234375
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_014",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9730660766691123,
+        "energy_in_mask": 1.225883960723877,
+        "mask_frac": 0.02278900146484375
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_015",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.933857012104158,
+        "energy_in_mask": 1.2268232107162476,
+        "mask_frac": 0.030487060546875
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_016",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9015179739809741,
+        "energy_in_mask": 1.1761860847473145,
+        "mask_frac": 0.0538482666015625
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_017",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.988516535746974,
+        "energy_in_mask": 1.437427282333374,
+        "mask_frac": 0.029140472412109375
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_018",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9892441727865712,
+        "energy_in_mask": 1.2954835891723633,
+        "mask_frac": 0.027034759521484375
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_019",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9943312664111844,
+        "energy_in_mask": 1.3539985418319702,
+        "mask_frac": 0.01770782470703125
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_020",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9795542126281339,
+        "energy_in_mask": 1.2987236976623535,
+        "mask_frac": 0.007144927978515625
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_021",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9662252972720489,
+        "energy_in_mask": 1.266314148902893,
+        "mask_frac": 0.009723663330078125
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_022",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9956751839648889,
+        "energy_in_mask": 1.4547430276870728,
+        "mask_frac": 0.0072021484375
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_023",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9868711486123627,
+        "energy_in_mask": 1.302808403968811,
+        "mask_frac": 0.006580352783203125
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_024",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9873107647126592,
+        "energy_in_mask": 1.3752895593643188,
+        "mask_frac": 0.00775146484375
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_025",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9699747006875018,
+        "energy_in_mask": 1.2050198316574097,
+        "mask_frac": 0.00189971923828125
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_026",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9670962606076058,
+        "energy_in_mask": 1.3289612531661987,
+        "mask_frac": 0.008304595947265625
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_027",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9917374184816046,
+        "energy_in_mask": 1.3437966108322144,
+        "mask_frac": 0.007755279541015625
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_028",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9894085242922452,
+        "energy_in_mask": 1.346139669418335,
+        "mask_frac": 0.0077667236328125
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_029",
+        "defect_type": "crack",
+        "pixel_auroc": 0.994992410797222,
+        "energy_in_mask": 1.5193276405334473,
+        "mask_frac": 0.003448486328125
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_030",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9784457233251926,
+        "energy_in_mask": 1.2900350093841553,
+        "mask_frac": 0.030002593994140625
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_031",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9935058623041733,
+        "energy_in_mask": 1.2996900081634521,
+        "mask_frac": 0.02779388427734375
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_032",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9677958973297771,
+        "energy_in_mask": 1.254685401916504,
+        "mask_frac": 0.040416717529296875
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_033",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9759390507194773,
+        "energy_in_mask": 1.2546025514602661,
+        "mask_frac": 0.026569366455078125
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_034",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9936113311975381,
+        "energy_in_mask": 1.3157331943511963,
+        "mask_frac": 0.033985137939453125
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_035",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9705852203551205,
+        "energy_in_mask": 1.2279788255691528,
+        "mask_frac": 0.026226043701171875
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_036",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9813132752666122,
+        "energy_in_mask": 1.2960389852523804,
+        "mask_frac": 0.036441802978515625
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_037",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9913189127372635,
+        "energy_in_mask": 1.326442003250122,
+        "mask_frac": 0.027545928955078125
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_038",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9910459044519238,
+        "energy_in_mask": 1.293597936630249,
+        "mask_frac": 0.025394439697265625
+      },
+      {
+        "component": "pump",
+        "id": "pump_defect_039",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9731503848388146,
+        "energy_in_mask": 1.298689365386963,
+        "mask_frac": 0.017246246337890625
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_000",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9554081488765842,
+        "energy_in_mask": 1.4504026174545288,
+        "mask_frac": 0.04129791259765625
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_001",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9851812852388526,
+        "energy_in_mask": 1.5785337686538696,
+        "mask_frac": 0.09613800048828125
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_002",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9932532262724711,
+        "energy_in_mask": 1.5282177925109863,
+        "mask_frac": 0.06866836547851562
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_003",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9912067975933886,
+        "energy_in_mask": 1.6518577337265015,
+        "mask_frac": 0.019268035888671875
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_004",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9901338439666341,
+        "energy_in_mask": 1.6057090759277344,
+        "mask_frac": 0.09166336059570312
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_005",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9899290614508831,
+        "energy_in_mask": 1.5700368881225586,
+        "mask_frac": 0.055004119873046875
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_006",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9861695200580899,
+        "energy_in_mask": 1.5787352323532104,
+        "mask_frac": 0.04407501220703125
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_007",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9957932996665158,
+        "energy_in_mask": 1.7097268104553223,
+        "mask_frac": 0.036121368408203125
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_008",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9705174161585447,
+        "energy_in_mask": 1.5176161527633667,
+        "mask_frac": 0.07587814331054688
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_009",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9817880948978149,
+        "energy_in_mask": 1.5240603685379028,
+        "mask_frac": 0.035320281982421875
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_010",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.980667067417163,
+        "energy_in_mask": 1.548891544342041,
+        "mask_frac": 0.03748321533203125
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_011",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.996515683212843,
+        "energy_in_mask": 1.7051119804382324,
+        "mask_frac": 0.01102447509765625
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_012",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9945312665905441,
+        "energy_in_mask": 1.738348126411438,
+        "mask_frac": 0.012073516845703125
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_013",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9936524832694188,
+        "energy_in_mask": 1.6376267671585083,
+        "mask_frac": 0.01653289794921875
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_014",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9913727184723957,
+        "energy_in_mask": 1.531969428062439,
+        "mask_frac": 0.025516510009765625
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_015",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9874042168687577,
+        "energy_in_mask": 1.516282081604004,
+        "mask_frac": 0.049495697021484375
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_016",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9972223806224961,
+        "energy_in_mask": 1.6583391427993774,
+        "mask_frac": 0.020267486572265625
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_017",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9858722702825787,
+        "energy_in_mask": 1.4809995889663696,
+        "mask_frac": 0.03885650634765625
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_018",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9896100660844178,
+        "energy_in_mask": 1.5598607063293457,
+        "mask_frac": 0.021209716796875
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_019",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9905853831752766,
+        "energy_in_mask": 1.543115496635437,
+        "mask_frac": 0.0191192626953125
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_020",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9947464122281113,
+        "energy_in_mask": 1.6809179782867432,
+        "mask_frac": 0.00811767578125
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_021",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9928463876496633,
+        "energy_in_mask": 1.66705322265625,
+        "mask_frac": 0.008815765380859375
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_022",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9940736718952179,
+        "energy_in_mask": 1.7129145860671997,
+        "mask_frac": 0.007976531982421875
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_023",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9971228199269329,
+        "energy_in_mask": 1.72999107837677,
+        "mask_frac": 0.004772186279296875
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_024",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9925343063377489,
+        "energy_in_mask": 1.7581050395965576,
+        "mask_frac": 0.01062774658203125
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_025",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9956153651439699,
+        "energy_in_mask": 1.7927706241607666,
+        "mask_frac": 0.0061187744140625
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_026",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9687266947857448,
+        "energy_in_mask": 1.2746895551681519,
+        "mask_frac": 0.00173187255859375
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_027",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9906491102856909,
+        "energy_in_mask": 1.7260850667953491,
+        "mask_frac": 0.0063018798828125
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_028",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9958491638570939,
+        "energy_in_mask": 1.7369633913040161,
+        "mask_frac": 0.00371551513671875
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_029",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9922217686149101,
+        "energy_in_mask": 1.532768964767456,
+        "mask_frac": 0.003757476806640625
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_030",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9906014988398838,
+        "energy_in_mask": 1.487030029296875,
+        "mask_frac": 0.019252777099609375
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_031",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9986239170245227,
+        "energy_in_mask": 1.6143856048583984,
+        "mask_frac": 0.033565521240234375
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_032",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9991454114574843,
+        "energy_in_mask": 1.7250386476516724,
+        "mask_frac": 0.020984649658203125
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_033",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9961853604089242,
+        "energy_in_mask": 1.568267583847046,
+        "mask_frac": 0.018489837646484375
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_034",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.996001027831374,
+        "energy_in_mask": 1.6726162433624268,
+        "mask_frac": 0.011180877685546875
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_035",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9913915479579151,
+        "energy_in_mask": 1.4649007320404053,
+        "mask_frac": 0.048381805419921875
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_036",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9975387117720712,
+        "energy_in_mask": 1.6073914766311646,
+        "mask_frac": 0.033649444580078125
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_037",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9982561393006337,
+        "energy_in_mask": 1.5607563257217407,
+        "mask_frac": 0.018573760986328125
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_038",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9867327786340087,
+        "energy_in_mask": 1.498616337776184,
+        "mask_frac": 0.036590576171875
+      },
+      {
+        "component": "flange",
+        "id": "flange_defect_039",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9875166955535635,
+        "energy_in_mask": 1.5922266244888306,
+        "mask_frac": 0.020938873291015625
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_000",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9999064579960425,
+        "energy_in_mask": 2.5744354724884033,
+        "mask_frac": 0.002105712890625
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_001",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9998875705708141,
+        "energy_in_mask": 2.6314897537231445,
+        "mask_frac": 0.002468109130859375
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_002",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9997758350145707,
+        "energy_in_mask": 2.6592636108398438,
+        "mask_frac": 0.001728057861328125
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_003",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9998434758025313,
+        "energy_in_mask": 2.70871901512146,
+        "mask_frac": 0.005603790283203125
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_004",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9998165362035225,
+        "energy_in_mask": 2.3239598274230957,
+        "mask_frac": 0.00189971923828125
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_005",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9998800048977593,
+        "energy_in_mask": 2.789290428161621,
+        "mask_frac": 0.00312042236328125
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_006",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9996790168745414,
+        "energy_in_mask": 2.384733200073242,
+        "mask_frac": 0.001811981201171875
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_007",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9997232898132972,
+        "energy_in_mask": 2.7216296195983887,
+        "mask_frac": 0.00319671630859375
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_008",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9997628216883673,
+        "energy_in_mask": 2.209332227706909,
+        "mask_frac": 0.00146484375
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_009",
+        "defect_type": "corrosion",
+        "pixel_auroc": 0.9997817375437617,
+        "energy_in_mask": 2.3632540702819824,
+        "mask_frac": 0.001239776611328125
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_010",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9967197882411684,
+        "energy_in_mask": 2.2365736961364746,
+        "mask_frac": 0.002170562744140625
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_011",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9983780144448525,
+        "energy_in_mask": 2.1102380752563477,
+        "mask_frac": 0.003021240234375
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_012",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.998951443076466,
+        "energy_in_mask": 1.8772982358932495,
+        "mask_frac": 0.002231597900390625
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_013",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9994114136158548,
+        "energy_in_mask": 2.031662940979004,
+        "mask_frac": 0.00222015380859375
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_014",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9985299522234473,
+        "energy_in_mask": 2.128533124923706,
+        "mask_frac": 0.003620147705078125
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_015",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9989420406468191,
+        "energy_in_mask": 1.955039381980896,
+        "mask_frac": 0.003612518310546875
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_016",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9981100470638129,
+        "energy_in_mask": 2.221930503845215,
+        "mask_frac": 0.00279998779296875
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_017",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.99538710199691,
+        "energy_in_mask": 1.91666841506958,
+        "mask_frac": 0.00440216064453125
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_018",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9985029706488607,
+        "energy_in_mask": 1.8687269687652588,
+        "mask_frac": 0.003143310546875
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_019",
+        "defect_type": "oil_leak",
+        "pixel_auroc": 0.9821483227228207,
+        "energy_in_mask": 1.3886579275131226,
+        "mask_frac": 0.003055572509765625
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_020",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9947809999726933,
+        "energy_in_mask": 2.237917423248291,
+        "mask_frac": 0.00650787353515625
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_021",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9926435376567497,
+        "energy_in_mask": 2.1666035652160645,
+        "mask_frac": 0.006992340087890625
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_022",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9896130970044852,
+        "energy_in_mask": 2.1998307704925537,
+        "mask_frac": 0.007183074951171875
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_023",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9952610980513302,
+        "energy_in_mask": 2.263049840927124,
+        "mask_frac": 0.005443572998046875
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_024",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9932620804882403,
+        "energy_in_mask": 2.0777463912963867,
+        "mask_frac": 0.004852294921875
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_025",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9966837470705449,
+        "energy_in_mask": 2.3951339721679688,
+        "mask_frac": 0.008945465087890625
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_026",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9926121281674112,
+        "energy_in_mask": 2.228785753250122,
+        "mask_frac": 0.00484466552734375
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_027",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9948869518069461,
+        "energy_in_mask": 2.4450418949127197,
+        "mask_frac": 0.004711151123046875
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_028",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9874374860979378,
+        "energy_in_mask": 2.1589767932891846,
+        "mask_frac": 0.006084442138671875
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_029",
+        "defect_type": "crack",
+        "pixel_auroc": 0.9933270714007167,
+        "energy_in_mask": 2.2926995754241943,
+        "mask_frac": 0.006683349609375
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_030",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.999755441428222,
+        "energy_in_mask": 2.1320250034332275,
+        "mask_frac": 0.001903533935546875
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_031",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9991283596976273,
+        "energy_in_mask": 1.796048879623413,
+        "mask_frac": 0.00362396240234375
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_032",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9999350337012675,
+        "energy_in_mask": 2.1663012504577637,
+        "mask_frac": 0.002994537353515625
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_033",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9998865035227561,
+        "energy_in_mask": 2.6815357208251953,
+        "mask_frac": 0.00135040283203125
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_034",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.99992916341999,
+        "energy_in_mask": 2.1746997833251953,
+        "mask_frac": 0.002208709716796875
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_035",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9982806501674426,
+        "energy_in_mask": 2.0664403438568115,
+        "mask_frac": 0.0035400390625
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_036",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9993502323874756,
+        "energy_in_mask": 1.77011239528656,
+        "mask_frac": 0.002105712890625
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_037",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9996025437201908,
+        "energy_in_mask": 2.1121952533721924,
+        "mask_frac": 0.00173187255859375
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_038",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.999371599731035,
+        "energy_in_mask": 1.719831943511963,
+        "mask_frac": 0.00150299072265625
+      },
+      {
+        "component": "manometer",
+        "id": "manometer_defect_039",
+        "defect_type": "erosion",
+        "pixel_auroc": 0.9997970340102349,
+        "energy_in_mask": 2.145373582839966,
+        "mask_frac": 0.002582550048828125
+      }
+    ]
+  },
+  "real_frames": {
+    "thresholds_from_synthetic_calib": {
+      "n_views_per_class": 20,
+      "tilt_deg": 30.0,
+      "frame_size": [
+        2560,
+        1920
+      ],
+      "detection_failures": {
+        "clean": 0,
+        "defect": 0
+      },
+      "auroc_macro": 1.0,
+      "auroc_pooled": 1.0,
+      "not_evaluated": [
+        "manometer"
+      ],
+      "latency_ms_mean": 50.3,
+      "latency_ms_p95": 63.3,
+      "per_component": {
+        "coupling_guard": {
+          "auroc": 1.0,
+          "n_clean": 20,
+          "n_defect": 20,
+          "score_clean_mean": 0.8164,
+          "score_defect_mean": 24.9007,
+          "score_clean_max": 1.028,
+          "detected_clean_frac_q95": 0.05,
+          "detected_defect_frac_q95": 1.0,
+          "detected_clean_frac_q99": 0.05,
+          "detected_defect_frac_q99": 1.0
+        },
+        "flange": {
+          "auroc": 1.0,
+          "n_clean": 20,
+          "n_defect": 20,
+          "score_clean_mean": 0.632,
+          "score_defect_mean": 23.9979,
+          "score_clean_max": 0.7745,
+          "detected_clean_frac_q95": 0.0,
+          "detected_defect_frac_q95": 1.0,
+          "detected_clean_frac_q99": 0.0,
+          "detected_defect_frac_q99": 1.0
+        },
+        "manometer": {
+          "auroc": null,
+          "n_clean": 20,
+          "n_defect": 0,
+          "score_clean_mean": 2.0666,
+          "score_defect_mean": null,
+          "note": "нет узла на одном из планшетов — AUROC не определён"
+        },
+        "motor": {
+          "auroc": 1.0,
+          "n_clean": 20,
+          "n_defect": 20,
+          "score_clean_mean": 0.6426,
+          "score_defect_mean": 24.3117,
+          "score_clean_max": 0.7512,
+          "detected_clean_frac_q95": 0.0,
+          "detected_defect_frac_q95": 1.0,
+          "detected_clean_frac_q99": 0.0,
+          "detected_defect_frac_q99": 1.0
+        },
+        "pump": {
+          "auroc": 1.0,
+          "n_clean": 20,
+          "n_defect": 20,
+          "score_clean_mean": 0.6207,
+          "score_defect_mean": 21.2717,
+          "score_clean_max": 0.7028,
+          "detected_clean_frac_q95": 0.0,
+          "detected_defect_frac_q95": 1.0,
+          "detected_clean_frac_q99": 0.0,
+          "detected_defect_frac_q99": 1.0
+        }
+      },
+      "caveat": "Дефектный планшет — ДРУГОЕ фото (реальный ржавый насос в цеху), а не тот же кадр с дефектом. Высокий AUROC здесь подтверждает перенос на реальный дефект, но частично объясняется сменой сцены."
+    },
+    "thresholds_from_pipeline_calib": {
+      "n_views_per_class": 20,
+      "tilt_deg": 30.0,
+      "frame_size": [
+        2560,
+        1920
+      ],
+      "detection_failures": {
+        "clean": 0,
+        "defect": 0
+      },
+      "auroc_macro": 1.0,
+      "auroc_pooled": 1.0,
+      "not_evaluated": [
+        "manometer"
+      ],
+      "latency_ms_mean": 47.4,
+      "latency_ms_p95": 58.7,
+      "per_component": {
+        "coupling_guard": {
+          "auroc": 1.0,
+          "n_clean": 20,
+          "n_defect": 20,
+          "score_clean_mean": 0.8472,
+          "score_defect_mean": 27.1703,
+          "score_clean_max": 1.0329,
+          "detected_clean_frac_q95": 0.1,
+          "detected_defect_frac_q95": 1.0,
+          "detected_clean_frac_q99": 0.0,
+          "detected_defect_frac_q99": 1.0
+        },
+        "flange": {
+          "auroc": 1.0,
+          "n_clean": 20,
+          "n_defect": 20,
+          "score_clean_mean": 0.8799,
+          "score_defect_mean": 34.9076,
+          "score_clean_max": 1.0383,
+          "detected_clean_frac_q95": 0.1,
+          "detected_defect_frac_q95": 1.0,
+          "detected_clean_frac_q99": 0.0,
+          "detected_defect_frac_q99": 1.0
+        },
+        "manometer": {
+          "auroc": null,
+          "n_clean": 20,
+          "n_defect": 0,
+          "score_clean_mean": 0.6452,
+          "score_defect_mean": null,
+          "note": "нет узла на одном из планшетов — AUROC не определён"
+        },
+        "motor": {
+          "auroc": 1.0,
+          "n_clean": 20,
+          "n_defect": 20,
+          "score_clean_mean": 0.8665,
+          "score_defect_mean": 33.9317,
+          "score_clean_max": 1.094,
+          "detected_clean_frac_q95": 0.1,
+          "detected_defect_frac_q95": 1.0,
+          "detected_clean_frac_q99": 0.0,
+          "detected_defect_frac_q99": 1.0
+        },
+        "pump": {
+          "auroc": 1.0,
+          "n_clean": 20,
+          "n_defect": 20,
+          "score_clean_mean": 0.9289,
+          "score_defect_mean": 38.0107,
+          "score_clean_max": 1.0779,
+          "detected_clean_frac_q95": 0.2,
+          "detected_defect_frac_q95": 1.0,
+          "detected_clean_frac_q99": 0.15,
+          "detected_defect_frac_q99": 1.0
+        }
+      },
+      "caveat": "Дефектный планшет — ДРУГОЕ фото (реальный ржавый насос в цеху), а не тот же кадр с дефектом. Высокий AUROC здесь подтверждает перенос на реальный дефект, но частично объясняется сменой сцены."
+    }
+  },
+  "elapsed_seconds": 494.3,
+  "board_calibration": {
+    "task": "калибровка threshold_q99 PatchCore v2 под планшеты PUMP-001/002",
+    "calib_frames_clean": 20,
+    "holdout_frames_clean": 20,
+    "holdout_frames_defect": 20,
+    "frame_size": [
+      2560,
+      1920
+    ],
+    "tilt_deg_range": [
+      0.0,
+      20.0
+    ],
+    "scale_range": [
+      0.7,
+      1.0
+    ],
+    "seed_calib": 20261114,
+    "seed_holdout": 20261214,
+    "margin": 1.1,
+    "pose": "истинная гомография синтеза (на печатных планшетах нет ArUco)",
+    "components": {
+      "coupling_guard": {
+        "calib_clean_scores": [
+          1.371589,
+          1.284228,
+          1.531039,
+          1.101594,
+          1.21373,
+          1.399339,
+          1.172046,
+          1.323082,
+          1.512732,
+          1.099236,
+          1.323477,
+          1.284888,
+          1.255667,
+          1.258173,
+          1.485455,
+          1.512136,
+          1.076706,
+          1.026763,
+          1.730634,
+          1.123763
+        ],
+        "holdout_clean_scores": [
+          0.870559,
+          1.433831,
+          1.278484,
+          1.059258,
+          1.394659,
+          1.07604,
+          0.89661,
+          0.981292,
+          1.192956,
+          1.034828,
+          1.414955,
+          1.128885,
+          1.415971,
+          1.187545,
+          1.306354,
+          1.623575,
+          0.94195,
+          1.229421,
+          1.192695,
+          0.985858
+        ],
+        "holdout_defect_scores": [
+          27.063887,
+          24.21794,
+          26.663412,
+          24.414791,
+          27.38936,
+          28.068971,
+          27.074289,
+          27.326239,
+          29.059219,
+          28.134078,
+          25.618227,
+          24.234269,
+          27.799411,
+          27.518502,
+          29.50081,
+          28.913738,
+          23.49368,
+          27.58317,
+          26.783508,
+          27.804715
+        ],
+        "calib_clean_mean": 1.304314,
+        "calib_clean_max": 1.730634,
+        "holdout_clean_mean": 1.182286,
+        "holdout_clean_max": 1.623575,
+        "holdout_defect_mean": 26.933111,
+        "holdout_defect_min": 23.49368,
+        "threshold_q95_before": 0.995165,
+        "threshold_q99_before": 1.245499,
+        "threshold_q95_after": 1.903697,
+        "threshold_q99_after": 1.903697,
+        "calib_clean_fp_before_q99": 13,
+        "calib_clean_fp_after": 0,
+        "holdout_clean_fp_before_q99": 7,
+        "holdout_clean_fp_after": 0,
+        "holdout_defect_tp_before_q99": 20,
+        "holdout_defect_tp_after": 20,
+        "n_calib_clean": 20,
+        "n_holdout_clean": 20,
+        "n_holdout_defect": 20
+      },
+      "flange": {
+        "calib_clean_scores": [
+          1.157381,
+          1.081509,
+          1.180511,
+          1.003085,
+          1.153665,
+          0.930383,
+          0.902652,
+          1.151525,
+          1.581009,
+          0.929316,
+          1.252793,
+          1.434351,
+          1.428162,
+          1.028358,
+          1.154031,
+          1.413887,
+          1.353481,
+          1.14863,
+          1.222989,
+          0.983907
+        ],
+        "holdout_clean_scores": [
+          1.003988,
+          0.955368,
+          1.007703,
+          1.081755,
+          1.276556,
+          0.929566,
+          0.960302,
+          0.729201,
+          1.005889,
+          1.079199,
+          1.257273,
+          1.163561,
+          1.056669,
+          1.060473,
+          1.033113,
+          1.381371,
+          0.933869,
+          1.063129,
+          1.15309,
+          1.030375
+        ],
+        "holdout_defect_scores": [
+          34.700241,
+          32.873815,
+          34.211781,
+          33.873397,
+          35.181998,
+          35.419306,
+          34.578817,
+          35.016557,
+          35.570422,
+          35.47109,
+          34.03887,
+          33.39699,
+          34.540453,
+          34.835692,
+          35.881988,
+          35.351312,
+          32.767544,
+          34.739069,
+          33.942337,
+          34.784508
+        ],
+        "calib_clean_mean": 1.174581,
+        "calib_clean_max": 1.581009,
+        "holdout_clean_mean": 1.058123,
+        "holdout_clean_max": 1.381371,
+        "holdout_defect_mean": 34.558809,
+        "holdout_defect_min": 32.767544,
+        "threshold_q95_before": 0.999941,
+        "threshold_q99_before": 1.053482,
+        "threshold_q95_after": 1.739109,
+        "threshold_q99_after": 1.739109,
+        "calib_clean_fp_before_q99": 14,
+        "calib_clean_fp_after": 0,
+        "holdout_clean_fp_before_q99": 10,
+        "holdout_clean_fp_after": 0,
+        "holdout_defect_tp_before_q99": 20,
+        "holdout_defect_tp_after": 20,
+        "n_calib_clean": 20,
+        "n_holdout_clean": 20,
+        "n_holdout_defect": 20
+      },
+      "manometer": {
+        "calib_clean_scores": [
+          1.441367,
+          1.771733,
+          1.966609,
+          1.470911,
+          1.654095,
+          0.912378,
+          0.977714,
+          1.774563,
+          1.784542,
+          1.242571,
+          1.628984,
+          1.705645,
+          1.803188,
+          1.621012,
+          1.55482,
+          1.310872,
+          1.55153,
+          1.223059,
+          1.7496,
+          1.18859
+        ],
+        "holdout_clean_scores": [
+          1.439007,
+          1.556441,
+          1.299276,
+          1.456253,
+          1.718538,
+          0.799435,
+          1.206234,
+          0.857666,
+          1.454501,
+          1.257913,
+          1.56715,
+          1.555497,
+          1.63193,
+          0.741184,
+          1.132215,
+          1.767272,
+          0.896688,
+          1.211752,
+          0.943348,
+          0.878433
+        ],
+        "holdout_defect_scores": [],
+        "calib_clean_mean": 1.516689,
+        "calib_clean_max": 1.966609,
+        "holdout_clean_mean": 1.268537,
+        "holdout_clean_max": 1.767272,
+        "holdout_defect_mean": null,
+        "holdout_defect_min": null,
+        "threshold_q95_before": 0.997529,
+        "threshold_q99_before": 1.136235,
+        "threshold_q95_after": 2.16327,
+        "threshold_q99_after": 2.16327,
+        "calib_clean_fp_before_q99": 18,
+        "calib_clean_fp_after": 0,
+        "holdout_clean_fp_before_q99": 13,
+        "holdout_clean_fp_after": 0,
+        "holdout_defect_tp_before_q99": null,
+        "holdout_defect_tp_after": null,
+        "n_calib_clean": 20,
+        "n_holdout_clean": 20,
+        "n_holdout_defect": 0
+      },
+      "motor": {
+        "calib_clean_scores": [
+          0.78955,
+          0.741177,
+          0.763724,
+          0.788502,
+          0.883269,
+          0.950121,
+          0.741906,
+          0.71881,
+          0.786936,
+          0.809571,
+          0.739115,
+          0.743097,
+          0.742229,
+          0.74399,
+          0.766311,
+          0.740486,
+          0.744562,
+          0.714282,
+          0.714941,
+          0.743108
+        ],
+        "holdout_clean_scores": [
+          0.742208,
+          0.835398,
+          0.833819,
+          0.791968,
+          0.767465,
+          0.788742,
+          0.83257,
+          0.694837,
+          0.738779,
+          0.792308,
+          0.695413,
+          0.741765,
+          0.881626,
+          0.786719,
+          0.762627,
+          0.695608,
+          0.742668,
+          0.764998,
+          0.78804,
+          0.745415
+        ],
+        "holdout_defect_scores": [
+          34.121395,
+          31.887089,
+          33.822332,
+          32.872445,
+          34.48684,
+          34.457341,
+          33.684825,
+          34.374614,
+          34.842332,
+          34.349672,
+          33.058594,
+          32.659406,
+          34.089586,
+          34.308917,
+          35.088814,
+          34.967831,
+          32.346193,
+          34.114915,
+          33.912762,
+          34.214311
+        ],
+        "calib_clean_mean": 0.768284,
+        "calib_clean_max": 0.950121,
+        "holdout_clean_mean": 0.771149,
+        "holdout_clean_max": 0.881626,
+        "holdout_defect_mean": 33.883011,
+        "holdout_defect_min": 31.887089,
+        "threshold_q95_before": 0.999301,
+        "threshold_q99_before": 1.129038,
+        "threshold_q95_after": 1.045134,
+        "threshold_q99_after": 1.045134,
+        "calib_clean_fp_before_q99": 0,
+        "calib_clean_fp_after": 0,
+        "holdout_clean_fp_before_q99": 0,
+        "holdout_clean_fp_after": 0,
+        "holdout_defect_tp_before_q99": 20,
+        "holdout_defect_tp_after": 20,
+        "n_calib_clean": 20,
+        "n_holdout_clean": 20,
+        "n_holdout_defect": 20
+      },
+      "pump": {
+        "calib_clean_scores": [
+          1.078483,
+          0.916964,
+          0.966868,
+          0.916194,
+          1.05092,
+          1.018336,
+          0.858305,
+          1.000318,
+          1.053678,
+          0.827907,
+          1.077163,
+          0.891326,
+          0.860257,
+          1.021221,
+          0.916585,
+          0.912027,
+          0.916177,
+          0.858849,
+          0.833842,
+          0.891766
+        ],
+        "holdout_clean_scores": [
+          0.917505,
+          0.861192,
+          1.046929,
+          0.998944,
+          0.992384,
+          1.071196,
+          0.96381,
+          0.833008,
+          0.860916,
+          1.132728,
+          0.971226,
+          1.017734,
+          0.992767,
+          0.859278,
+          0.888451,
+          0.941969,
+          0.892773,
+          0.91693,
+          0.916479,
+          0.917532
+        ],
+        "holdout_defect_scores": [
+          38.315947,
+          36.938717,
+          38.263767,
+          37.043872,
+          38.823566,
+          38.665707,
+          38.264775,
+          38.796656,
+          39.258142,
+          38.694225,
+          37.517894,
+          36.987905,
+          38.052598,
+          38.531705,
+          39.227017,
+          39.095539,
+          37.517615,
+          38.503446,
+          38.107175,
+          38.297929
+        ],
+        "calib_clean_mean": 0.943359,
+        "calib_clean_max": 1.078483,
+        "holdout_clean_mean": 0.949688,
+        "holdout_clean_max": 1.132728,
+        "holdout_defect_mean": 38.24521,
+        "holdout_defect_min": 36.938717,
+        "threshold_q95_before": 0.995266,
+        "threshold_q99_before": 1.01087,
+        "threshold_q95_after": 1.186332,
+        "threshold_q99_after": 1.186332,
+        "calib_clean_fp_before_q99": 6,
+        "calib_clean_fp_after": 0,
+        "holdout_clean_fp_before_q99": 4,
+        "holdout_clean_fp_after": 0,
+        "holdout_defect_tp_before_q99": 20,
+        "holdout_defect_tp_after": 20,
+        "n_calib_clean": 20,
+        "n_holdout_clean": 20,
+        "n_holdout_defect": 20
+      }
+    },
+    "summary": {
+      "coupling_guard": {
+        "calib_clean_max": 1.730634,
+        "holdout_clean_max": 1.623575,
+        "holdout_defect_min": 23.49368,
+        "thr_q99_before": 1.245499,
+        "thr_q99_after": 1.903697,
+        "holdout_clean_fp_before": 7,
+        "holdout_clean_fp_after": 0,
+        "holdout_defect_tp_before": 20,
+        "holdout_defect_tp_after": 20
+      },
+      "flange": {
+        "calib_clean_max": 1.581009,
+        "holdout_clean_max": 1.381371,
+        "holdout_defect_min": 32.767544,
+        "thr_q99_before": 1.053482,
+        "thr_q99_after": 1.739109,
+        "holdout_clean_fp_before": 10,
+        "holdout_clean_fp_after": 0,
+        "holdout_defect_tp_before": 20,
+        "holdout_defect_tp_after": 20
+      },
+      "manometer": {
+        "calib_clean_max": 1.966609,
+        "holdout_clean_max": 1.767272,
+        "holdout_defect_min": null,
+        "thr_q99_before": 1.136235,
+        "thr_q99_after": 2.16327,
+        "holdout_clean_fp_before": 13,
+        "holdout_clean_fp_after": 0,
+        "holdout_defect_tp_before": null,
+        "holdout_defect_tp_after": null
+      },
+      "motor": {
+        "calib_clean_max": 0.950121,
+        "holdout_clean_max": 0.881626,
+        "holdout_defect_min": 31.887089,
+        "thr_q99_before": 1.129038,
+        "thr_q99_after": 1.045134,
+        "holdout_clean_fp_before": 0,
+        "holdout_clean_fp_after": 0,
+        "holdout_defect_tp_before": 20,
+        "holdout_defect_tp_after": 20
+      },
+      "pump": {
+        "calib_clean_max": 1.078483,
+        "holdout_clean_max": 1.132728,
+        "holdout_defect_min": 36.938717,
+        "thr_q99_before": 1.01087,
+        "thr_q99_after": 1.186332,
+        "holdout_clean_fp_before": 4,
+        "holdout_clean_fp_after": 0,
+        "holdout_defect_tp_before": 20,
+        "holdout_defect_tp_after": 20
+      }
+    },
+    "note": "Порог q99 = max(score чистых калибровочных)*margin (1.10); q95 приравнен к q99, потому что is_anomaly использует q95. Проверка — на 20 отложенных чистых и 20 дефектных перспективах (другой seed). Старые пороги — в models_prev/ и полях *_before.",
+    "note_boards": "Планшеты out_real/out_defect пересобраны 14.11.2026 без ArUco; цифры real_frames выше получены на прежних досках с маркерами. Актуальные — в board_calibration."
+  }
+}

@@ -1,0 +1,1160 @@
+{
+  "generated_at": "2026-11-13T20:04:34+00:00",
+  "task": "детекция коррозии по узлам планшета (YOLO11n, 1 класс corrosion)",
+  "download": {
+    "figshare_pipelines": {
+      "file": "Corrosion_Pipelines.zip",
+      "bytes": 11009354,
+      "status": "cached",
+      "title": "Corroded Pipelines Dataset (Figshare 30019591)",
+      "url": "https://ndownloader.figshare.com/files/57550888"
+    },
+    "wpi_arl": {
+      "file": "WPI_corrosion.zip",
+      "bytes": 623502178,
+      "total": 623502178,
+      "status": "ok",
+      "seconds": 141.2,
+      "title": "WPI-ARL Corrosion Image Data Set",
+      "url": "https://arl.wpi.edu/data/DATA_SET_FOR_RELEASE_CORROSION.zip"
+    },
+    "figshare_condition": {
+      "file": "Corrosion_Condition_State.zip",
+      "bytes": 0,
+      "total": 0,
+      "status": "ok",
+      "seconds": 0.7,
+      "title": "Corrosion Condition State Semantic Segmentation Dataset (Figshare 16624663)",
+      "url": "https://ndownloader.figshare.com/files/31729733"
+    },
+    "mendeley_purdue": {
+      "file": "Mendeley_Corrosion_Data.zip",
+      "bytes": 662667730,
+      "total": 662667730,
+      "status": "ok",
+      "seconds": 386.9,
+      "title": "Image-based Corrosion Detection Dataset (Mendeley, Purdue)",
+      "url": "https://data.mendeley.com/public-files/datasets/tbjn6p2gn9/files/c311d38e-f04d-41ff-a508-dba6b60cc07b/file_downloaded"
+    }
+  },
+  "prepare": {
+    "class_names": [
+      "corrosion"
+    ],
+    "params": {
+      "out": "D:\\NTec-Хакатон\\corrosion\\dataset",
+      "dedup_dist": 3,
+      "min_box": 8.0,
+      "min_area": 400.0
+    },
+    "sources": {
+      "pipelines": {
+        "images_read": 110,
+        "images_kept": 26,
+        "boxes": 168,
+        "images_dropped": 84
+      },
+      "condition": {
+        "images_read": 440,
+        "images_kept": 440,
+        "boxes": 4075,
+        "images_dropped": 0
+      },
+      "mendeley": {
+        "images": 152,
+        "boxes": 0,
+        "used_for_training": false,
+        "reason": "в публичном архиве Mendeley только изображения, файлов разметки нет"
+      },
+      "wpi": {
+        "images": 600,
+        "boxes": 0,
+        "used_for_training": false,
+        "reason": "только экспертный рейтинг снимка (xlsx), боксов/масок нет"
+      }
+    },
+    "dropped_reasons": {
+      "дубликат (dHash<= 3)": 83,
+      "нет разметки": 1
+    },
+    "split": {
+      "train": {
+        "images": 372,
+        "boxes": 3375,
+        "by_source": {
+          "condition": 352,
+          "pipelines": 20
+        }
+      },
+      "val": {
+        "images": 47,
+        "boxes": 420,
+        "by_source": {
+          "condition": 44,
+          "pipelines": 3
+        }
+      },
+      "test": {
+        "images": 47,
+        "boxes": 448,
+        "by_source": {
+          "condition": 44,
+          "pipelines": 3
+        }
+      }
+    },
+    "totals": {
+      "images": 466,
+      "boxes": 4243
+    }
+  },
+  "train": {
+    "model": "yolo11n",
+    "weights": "D:\\NTec-Хакатон\\corrosion\\runs\\train\\weights\\best.pt",
+    "data": "D:\\NTec-Хакатон\\corrosion\\dataset\\data.yaml",
+    "params": {
+      "data": "D:\\NTec-Хакатон\\corrosion\\dataset\\data.yaml",
+      "model": "D:\\NTec-Хакатон\\corrosion\\weights\\yolo11n.pt",
+      "epochs": 80,
+      "imgsz": 640,
+      "batch": 12,
+      "device": "0",
+      "workers": 4,
+      "patience": 15,
+      "time_budget_min": 55.0,
+      "name": "train",
+      "seed": 20261113
+    },
+    "train_seconds": 577.6,
+    "train_minutes": 9.63,
+    "epochs_done": 80,
+    "val_metrics": {
+      "mAP50": 0.33510136089477716,
+      "mAP50_95": 0.13208309280018432,
+      "precision": 0.479955891688788,
+      "recall": 0.36904761904761907,
+      "per_class": {
+        "corrosion": {
+          "mAP50_95": 0.13208309280018432,
+          "precision": 0.479955891688788,
+          "recall": 0.36904761904761907
+        }
+      }
+    },
+    "hardware": "DESKTOP-TLE8HD2"
+  },
+  "eval": {
+    "weights": "D:\\NTec-Хакатон\\corrosion\\runs\\train\\weights\\best.pt",
+    "conf": 0.25,
+    "imgsz": 640,
+    "seed": 20261113,
+    "frames_per_board": 10,
+    "dataset": {
+      "overall": {
+        "mAP50": 0.2945,
+        "mAP50_95": 0.1125,
+        "precision": 0.388,
+        "recall": 0.3371,
+        "n_images": 47,
+        "n_boxes": 448
+      },
+      "by_source": {
+        "condition": {
+          "images": 44,
+          "boxes": 428,
+          "mAP50": 0.2793,
+          "mAP50_95": 0.1025,
+          "precision": 0.3628,
+          "recall": 0.3326
+        },
+        "pipelines": {
+          "images": 3,
+          "boxes": 20,
+          "mAP50": 0.5879,
+          "mAP50_95": 0.2916,
+          "precision": 0.7683,
+          "recall": 0.4975
+        }
+      }
+    },
+    "boards": {
+      "clean": {
+        "board": "out_real",
+        "frames": 10,
+        "pose_ok": 10,
+        "frames_any_node_detected": 0,
+        "frames_any_box": 0,
+        "by_node": {
+          "motor": {
+            "mean_area_pct": 0.0,
+            "max_area_pct": 0.0,
+            "frames_detected": 0,
+            "frames": 10
+          },
+          "coupling_guard": {
+            "mean_area_pct": 0.0,
+            "max_area_pct": 0.0,
+            "frames_detected": 0,
+            "frames": 10
+          },
+          "pump": {
+            "mean_area_pct": 0.0,
+            "max_area_pct": 0.0,
+            "frames_detected": 0,
+            "frames": 10
+          },
+          "flange": {
+            "mean_area_pct": 0.0,
+            "max_area_pct": 0.0,
+            "frames_detected": 0,
+            "frames": 10
+          },
+          "manometer": {
+            "mean_area_pct": 0.0,
+            "max_area_pct": 0.0,
+            "frames_detected": 0,
+            "frames": 10
+          }
+        },
+        "rows": [
+          {
+            "frame": 1,
+            "tilt": 12.97,
+            "scale": 0.5868,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "coupling_guard": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "pump": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "flange": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "manometer": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              }
+            },
+            "any_node_detected": false
+          },
+          {
+            "frame": 2,
+            "tilt": 14.77,
+            "scale": 0.9371,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "coupling_guard": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "pump": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "flange": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "manometer": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              }
+            },
+            "any_node_detected": false
+          },
+          {
+            "frame": 3,
+            "tilt": 8.07,
+            "scale": 0.6841,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "coupling_guard": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "pump": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "flange": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "manometer": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              }
+            },
+            "any_node_detected": false
+          },
+          {
+            "frame": 4,
+            "tilt": 9.71,
+            "scale": 0.9687,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "coupling_guard": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "pump": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "flange": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "manometer": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              }
+            },
+            "any_node_detected": false
+          },
+          {
+            "frame": 5,
+            "tilt": 30.08,
+            "scale": 0.7122,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "coupling_guard": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "pump": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "flange": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "manometer": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              }
+            },
+            "any_node_detected": false
+          },
+          {
+            "frame": 6,
+            "tilt": 33.04,
+            "scale": 0.6357,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "coupling_guard": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "pump": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "flange": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "manometer": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              }
+            },
+            "any_node_detected": false
+          },
+          {
+            "frame": 7,
+            "tilt": 28.53,
+            "scale": 0.5485,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "coupling_guard": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "pump": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "flange": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "manometer": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              }
+            },
+            "any_node_detected": false
+          },
+          {
+            "frame": 8,
+            "tilt": 27.78,
+            "scale": 0.8703,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "coupling_guard": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "pump": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "flange": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "manometer": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              }
+            },
+            "any_node_detected": false
+          },
+          {
+            "frame": 9,
+            "tilt": 27.35,
+            "scale": 0.5097,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "coupling_guard": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "pump": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "flange": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "manometer": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              }
+            },
+            "any_node_detected": false
+          },
+          {
+            "frame": 10,
+            "tilt": 21.71,
+            "scale": 0.9305,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "coupling_guard": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "pump": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "flange": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              },
+              "manometer": {
+                "area_pct": 0.0,
+                "detected": false,
+                "conf": 0.0,
+                "n_boxes": 0
+              }
+            },
+            "any_node_detected": false
+          }
+        ]
+      },
+      "defect": {
+        "board": "out_defect",
+        "frames": 10,
+        "pose_ok": 10,
+        "frames_any_node_detected": 10,
+        "frames_any_box": 0,
+        "by_node": {
+          "motor": {
+            "mean_area_pct": 91.25,
+            "max_area_pct": 100.0,
+            "frames_detected": 10,
+            "frames": 10
+          },
+          "coupling_guard": {
+            "mean_area_pct": 65.09,
+            "max_area_pct": 89.14,
+            "frames_detected": 10,
+            "frames": 10
+          },
+          "pump": {
+            "mean_area_pct": 88.03,
+            "max_area_pct": 100.0,
+            "frames_detected": 10,
+            "frames": 10
+          },
+          "flange": {
+            "mean_area_pct": 88.41,
+            "max_area_pct": 97.1,
+            "frames_detected": 10,
+            "frames": 10
+          }
+        },
+        "rows": [
+          {
+            "frame": 1,
+            "tilt": 12.97,
+            "scale": 0.5868,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 100.0,
+                "detected": true,
+                "conf": 0.3994,
+                "n_boxes": 1
+              },
+              "coupling_guard": {
+                "area_pct": 54.88,
+                "detected": true,
+                "conf": 0.7057,
+                "n_boxes": 3
+              },
+              "pump": {
+                "area_pct": 97.82,
+                "detected": true,
+                "conf": 0.6042,
+                "n_boxes": 3
+              },
+              "flange": {
+                "area_pct": 90.86,
+                "detected": true,
+                "conf": 0.2656,
+                "n_boxes": 1
+              }
+            },
+            "any_node_detected": true
+          },
+          {
+            "frame": 2,
+            "tilt": 14.77,
+            "scale": 0.9371,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 67.83,
+                "detected": true,
+                "conf": 0.5805,
+                "n_boxes": 1
+              },
+              "coupling_guard": {
+                "area_pct": 51.69,
+                "detected": true,
+                "conf": 0.7044,
+                "n_boxes": 2
+              },
+              "pump": {
+                "area_pct": 100.0,
+                "detected": true,
+                "conf": 0.5349,
+                "n_boxes": 4
+              },
+              "flange": {
+                "area_pct": 96.58,
+                "detected": true,
+                "conf": 0.3181,
+                "n_boxes": 2
+              }
+            },
+            "any_node_detected": true
+          },
+          {
+            "frame": 3,
+            "tilt": 8.07,
+            "scale": 0.6841,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 100.0,
+                "detected": true,
+                "conf": 0.4785,
+                "n_boxes": 1
+              },
+              "coupling_guard": {
+                "area_pct": 42.27,
+                "detected": true,
+                "conf": 0.6289,
+                "n_boxes": 5
+              },
+              "pump": {
+                "area_pct": 99.92,
+                "detected": true,
+                "conf": 0.7722,
+                "n_boxes": 2
+              },
+              "flange": {
+                "area_pct": 61.36,
+                "detected": true,
+                "conf": 0.5842,
+                "n_boxes": 2
+              }
+            },
+            "any_node_detected": true
+          },
+          {
+            "frame": 4,
+            "tilt": 9.71,
+            "scale": 0.9687,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 86.89,
+                "detected": true,
+                "conf": 0.5035,
+                "n_boxes": 5
+              },
+              "coupling_guard": {
+                "area_pct": 65.55,
+                "detected": true,
+                "conf": 0.5351,
+                "n_boxes": 1
+              },
+              "pump": {
+                "area_pct": 80.47,
+                "detected": true,
+                "conf": 0.307,
+                "n_boxes": 2
+              },
+              "flange": {
+                "area_pct": 90.4,
+                "detected": true,
+                "conf": 0.3935,
+                "n_boxes": 1
+              }
+            },
+            "any_node_detected": true
+          },
+          {
+            "frame": 5,
+            "tilt": 30.08,
+            "scale": 0.7122,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 73.65,
+                "detected": true,
+                "conf": 0.635,
+                "n_boxes": 2
+              },
+              "coupling_guard": {
+                "area_pct": 54.74,
+                "detected": true,
+                "conf": 0.7654,
+                "n_boxes": 4
+              },
+              "pump": {
+                "area_pct": 100.0,
+                "detected": true,
+                "conf": 0.4765,
+                "n_boxes": 3
+              },
+              "flange": {
+                "area_pct": 90.77,
+                "detected": true,
+                "conf": 0.3507,
+                "n_boxes": 1
+              }
+            },
+            "any_node_detected": true
+          },
+          {
+            "frame": 6,
+            "tilt": 33.04,
+            "scale": 0.6357,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 100.0,
+                "detected": true,
+                "conf": 0.4379,
+                "n_boxes": 1
+              },
+              "coupling_guard": {
+                "area_pct": 82.48,
+                "detected": true,
+                "conf": 0.6986,
+                "n_boxes": 4
+              },
+              "pump": {
+                "area_pct": 10.46,
+                "detected": true,
+                "conf": 0.3366,
+                "n_boxes": 1
+              },
+              "flange": {
+                "area_pct": 90.51,
+                "detected": true,
+                "conf": 0.5301,
+                "n_boxes": 2
+              }
+            },
+            "any_node_detected": true
+          },
+          {
+            "frame": 7,
+            "tilt": 28.53,
+            "scale": 0.5485,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 100.0,
+                "detected": true,
+                "conf": 0.3159,
+                "n_boxes": 1
+              },
+              "coupling_guard": {
+                "area_pct": 89.14,
+                "detected": true,
+                "conf": 0.4197,
+                "n_boxes": 1
+              },
+              "pump": {
+                "area_pct": 100.0,
+                "detected": true,
+                "conf": 0.4457,
+                "n_boxes": 2
+              },
+              "flange": {
+                "area_pct": 86.59,
+                "detected": true,
+                "conf": 0.6392,
+                "n_boxes": 2
+              }
+            },
+            "any_node_detected": true
+          },
+          {
+            "frame": 8,
+            "tilt": 27.78,
+            "scale": 0.8703,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 99.99,
+                "detected": true,
+                "conf": 0.3404,
+                "n_boxes": 1
+              },
+              "coupling_guard": {
+                "area_pct": 61.76,
+                "detected": true,
+                "conf": 0.6198,
+                "n_boxes": 3
+              },
+              "pump": {
+                "area_pct": 98.95,
+                "detected": true,
+                "conf": 0.6485,
+                "n_boxes": 2
+              },
+              "flange": {
+                "area_pct": 86.46,
+                "detected": true,
+                "conf": 0.5243,
+                "n_boxes": 2
+              }
+            },
+            "any_node_detected": true
+          },
+          {
+            "frame": 9,
+            "tilt": 27.35,
+            "scale": 0.5097,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 99.97,
+                "detected": true,
+                "conf": 0.7085,
+                "n_boxes": 1
+              },
+              "coupling_guard": {
+                "area_pct": 84.54,
+                "detected": true,
+                "conf": 0.6154,
+                "n_boxes": 4
+              },
+              "pump": {
+                "area_pct": 92.67,
+                "detected": true,
+                "conf": 0.3509,
+                "n_boxes": 1
+              },
+              "flange": {
+                "area_pct": 93.45,
+                "detected": true,
+                "conf": 0.4263,
+                "n_boxes": 1
+              }
+            },
+            "any_node_detected": true
+          },
+          {
+            "frame": 10,
+            "tilt": 21.71,
+            "scale": 0.9305,
+            "pose_ok": true,
+            "markers": 4,
+            "n_boxes_frame": 0,
+            "max_conf_frame": 0.0,
+            "nodes": {
+              "motor": {
+                "area_pct": 84.16,
+                "detected": true,
+                "conf": 0.5911,
+                "n_boxes": 4
+              },
+              "coupling_guard": {
+                "area_pct": 63.86,
+                "detected": true,
+                "conf": 0.5271,
+                "n_boxes": 6
+              },
+              "pump": {
+                "area_pct": 100.0,
+                "detected": true,
+                "conf": 0.4752,
+                "n_boxes": 2
+              },
+              "flange": {
+                "area_pct": 97.1,
+                "detected": true,
+                "conf": 0.391,
+                "n_boxes": 3
+              }
+            },
+            "any_node_detected": true
+          }
+        ]
+      }
+    },
+    "node_table": {
+      "coupling_guard": {
+        "clean_mean_pct": 0.0,
+        "clean_max_pct": 0.0,
+        "clean_frames_detected": 0,
+        "defect_mean_pct": 65.09,
+        "defect_max_pct": 89.14,
+        "defect_frames_detected": 10
+      },
+      "flange": {
+        "clean_mean_pct": 0.0,
+        "clean_max_pct": 0.0,
+        "clean_frames_detected": 0,
+        "defect_mean_pct": 88.41,
+        "defect_max_pct": 97.1,
+        "defect_frames_detected": 10
+      },
+      "manometer": {
+        "clean_mean_pct": 0.0,
+        "clean_max_pct": 0.0,
+        "clean_frames_detected": 0,
+        "defect_mean_pct": 0.0,
+        "defect_max_pct": 0.0,
+        "defect_frames_detected": 0
+      },
+      "motor": {
+        "clean_mean_pct": 0.0,
+        "clean_max_pct": 0.0,
+        "clean_frames_detected": 0,
+        "defect_mean_pct": 91.25,
+        "defect_max_pct": 100.0,
+        "defect_frames_detected": 10
+      },
+      "pump": {
+        "clean_mean_pct": 0.0,
+        "clean_max_pct": 0.0,
+        "clean_frames_detected": 0,
+        "defect_mean_pct": 88.03,
+        "defect_max_pct": 100.0,
+        "defect_frames_detected": 10
+      }
+    }
+  },
+  "export": {
+    "onnx": "D:\\NTec-Хакатон\\corrosion\\models\\corrosion_yolo11n_640.onnx",
+    "imgsz": 640,
+    "opset": 17,
+    "dynamic": false,
+    "half": false,
+    "size_mb": 10.66,
+    "onnxruntime": true,
+    "providers": [
+      "AzureExecutionProvider",
+      "CPUExecutionProvider"
+    ],
+    "input": [
+      1,
+      3,
+      640,
+      640
+    ],
+    "output_shape": [
+      1,
+      5,
+      8400
+    ]
+  },
+  "summary": {
+    "model": "yolo11n",
+    "weights": "D:\\NTec-Хакатон\\corrosion\\runs\\train\\weights\\best.pt",
+    "train_minutes": 9.63,
+    "val_mAP50": 0.33510136089477716,
+    "val_mAP50_95": 0.13208309280018432,
+    "val_precision": 0.479955891688788,
+    "val_recall": 0.36904761904761907,
+    "test_mAP50": 0.2945,
+    "board_clean_false_positive_frames": 0,
+    "board_clean_frames": 10,
+    "board_defect_frames_with_detection": 10,
+    "node_table": {
+      "coupling_guard": {
+        "clean_mean_pct": 0.0,
+        "clean_max_pct": 0.0,
+        "clean_frames_detected": 0,
+        "defect_mean_pct": 65.09,
+        "defect_max_pct": 89.14,
+        "defect_frames_detected": 10
+      },
+      "flange": {
+        "clean_mean_pct": 0.0,
+        "clean_max_pct": 0.0,
+        "clean_frames_detected": 0,
+        "defect_mean_pct": 88.41,
+        "defect_max_pct": 97.1,
+        "defect_frames_detected": 10
+      },
+      "manometer": {
+        "clean_mean_pct": 0.0,
+        "clean_max_pct": 0.0,
+        "clean_frames_detected": 0,
+        "defect_mean_pct": 0.0,
+        "defect_max_pct": 0.0,
+        "defect_frames_detected": 0
+      },
+      "motor": {
+        "clean_mean_pct": 0.0,
+        "clean_max_pct": 0.0,
+        "clean_frames_detected": 0,
+        "defect_mean_pct": 91.25,
+        "defect_max_pct": 100.0,
+        "defect_frames_detected": 10
+      },
+      "pump": {
+        "clean_mean_pct": 0.0,
+        "clean_max_pct": 0.0,
+        "clean_frames_detected": 0,
+        "defect_mean_pct": 88.03,
+        "defect_max_pct": 100.0,
+        "defect_frames_detected": 10
+      }
+    }
+  }
+}

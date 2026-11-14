@@ -1,0 +1,14 @@
+{
+ "references": [
+  {
+   "board_id": "PUMP-001",
+   "image": "ref/PUMP-001_photo.png",
+   "layout": "ref/PUMP-001_layout.json"
+  },
+  {
+   "board_id": "PUMP-002",
+   "image": "ref/PUMP-002_photo.png",
+   "layout": "ref/PUMP-002_layout.json"
+  }
+ ]
+}

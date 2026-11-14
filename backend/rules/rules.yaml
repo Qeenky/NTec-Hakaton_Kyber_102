@@ -1,0 +1,583 @@
+# Каталог правил диагностики.
+#
+# Пороги подобраны под демонстрационный агрегат; factor = абсолютный порог /
+# baseline, поэтому при замене baseline коэффициент пересчитывается
+# (см. комментарии у условий).
+#
+# Условие: {signal, op, value | ref, window_sec?}
+#   op: gt, lt, gte, lte, trend_up, trend_down, crosses,
+#       unbalance_pct, deviation_pct, in, has_signal, cv, any
+#   ref: baseline.<signal> — норма из карточки оборудования,
+#        либо имя другого сигнала (сравнение сигналов между собой)
+#   factor: множитель к ref (например, 22.7 × baseline.vibration_hf = 2.5 g)
+#   weight: вес условия в confidence
+#   optional: true — отсутствие сигнала не блокирует правило
+#
+# Тренды заданы в единицах сигнала за секунду; пороги подобраны под
+# демонстрационные данные.
+#
+# Гистерезис: срабатывание при confidence >= activate_confidence,
+# снятие при confidence < release_confidence.
+# confidence = (Σ w·matched / Σ w) × (0.5 + 0.5·mean(запас_по_порогу))
+
+version: "1.1"
+activate_confidence: 0.65
+release_confidence: 0.45
+
+rules:
+  - id: bearing_wear
+    title: "Износ подшипника"
+    severity: warning
+    tags: [sensors, vibration, temperature]
+    description: >-
+      Высокочастотная вибрация (признак дефекта подшипника качения) и температура
+      подшипникового узла растут одновременно, электропотребление остаётся в норме.
+    message: >-
+      Признаки износа подшипника: ВЧ-вибрация и температура подшипникового узла
+      повышены, ток в норме.
+    recommendation: >-
+      Проверить систему смазки, при необходимости добавить/заменить смазку.
+      Запланировать замену подшипника.
+    overlay:
+      component_id: pump
+      marker: highlight
+      color: orange
+      label: "Износ подшипника"
+    conditions:
+      # Порог по высокочастотной вибрации.
+      # При дефекте подшипника ведущий сигнал — HF, а не СКЗ.
+      - signal: vibration_hf
+        op: gt
+        ref: baseline.vibration_hf
+        factor: 22.7
+        weight: 3
+      # Порог предупреждения по температуре подшипника.
+      - signal: temperature_bearing
+        op: gt
+        ref: baseline.temperature_bearing
+        factor: 1.5
+        weight: 3
+      # Порог 2e-5 ловит рост вибрации заранее.
+      - signal: vibration_rms
+        op: trend_up
+        value: 0.00002
+        window_sec: 20
+        weight: 1
+      # Ток в норме: < 1.15 × 23 A = 26.45 A.
+      - signal: current_a
+        op: lt
+        ref: baseline.current_a
+        factor: 1.15
+        weight: 1
+
+  - id: cavitation
+    title: "Кавитация"
+    severity: critical
+    tags: [sensors, vibration, pressure, acoustics]
+    dedupe_group: cavitation
+    specificity: 1
+    description: >-
+      Широкополосная высокочастотная вибрация растёт на фоне падения давления
+      на входе и роста шума. Насос работает в режиме кавитации.
+    message: >-
+      Кавитация: высокочастотная вибрация растёт, давление на входе падает,
+      шум увеличился.
+    recommendation: >-
+      Немедленно проверить условия всасывания. Кавитация разрушает рабочее колесо.
+    overlay:
+      component_id: pump
+      marker: outline
+      color: red
+      label: "Кавитация"
+    conditions:
+      # Порог по высокочастотной вибрации. Без падения pressure_inlet правило
+      # не подтверждает кавитацию.
+      - signal: vibration_hf
+        op: gt
+        ref: baseline.vibration_hf
+        factor: 22.7
+        weight: 2
+      - signal: vibration_hf
+        op: trend_up
+        value: 0.00002
+        window_sec: 20
+        weight: 1
+      # 0.8 × 0.3 бар = 0.24 бар; вход близок к атмосферному.
+      - signal: pressure_inlet
+        op: lt
+        ref: baseline.pressure_inlet
+        factor: 0.8
+        weight: 2
+      - signal: pressure_inlet
+        op: trend_down
+        value: 0.001
+        window_sec: 20
+        weight: 1
+      - signal: noise_db
+        op: gt
+        ref: baseline.noise_db
+        factor: 1.08
+        weight: 1
+        optional: true
+      - signal: flow
+        op: lt
+        ref: baseline.flow
+        factor: 0.92
+        weight: 1
+        optional: true
+
+  - id: misalignment
+    title: "Расцентровка насоса и двигателя"
+    severity: warning
+    tags: [sensors, vibration, alignment]
+    description: >-
+      Вторая гармоника вибрации (2x) повышена, температура в норме, ток слегка
+      повышен — характерный признак нарушения соосности. Осевой канал в
+      демо-данных отсутствует, поэтому правило ведётся по 2x.
+    message: >-
+      Подозрение на расцентровку: 2-я гармоника вибрации повышена, температура
+      в норме, ток слегка повышен.
+    recommendation: >-
+      Выполнить проверку и коррекцию соосности насоса и двигателя лазерным методом.
+    overlay:
+      component_id: coupling_guard
+      marker: highlight
+      color: orange
+      label: "Проверить соосность"
+    conditions:
+      # Порог внимания по 2x-гармонике.
+      - signal: vibration_lf_2x
+        op: gt
+        ref: baseline.vibration_lf_2x
+        factor: 5.8
+        weight: 2
+      # Температура должна остаться в норме.
+      - signal: temperature_bearing
+        op: lt
+        ref: baseline.temperature_bearing
+        factor: 1.32
+        weight: 1
+      - signal: current_a
+        op: gt
+        ref: baseline.current_a
+        factor: 1.03
+        weight: 1
+      - signal: current_a
+        op: lt
+        ref: baseline.current_a
+        factor: 1.15
+        weight: 1
+
+  - id: impeller_wear
+    title: "Износ рабочего колеса"
+    severity: warning
+    tags: [sensors, efficiency]
+    description: >-
+      КПД упал более чем на 15 % относительно базовой нормы, при этом вибрация
+      и температура остаются в норме. Потери — гидравлические, не механические.
+      КПД — демонстрационный сигнал; порог 60 %.
+    message: >-
+      КПД снизился более чем на 15 % при нормальной вибрации и температуре.
+    recommendation: >-
+      Плановый ремонт. Заказать рабочее колесо и уплотнительные кольца.
+    overlay:
+      component_id: pump
+      marker: highlight
+      color: orange
+      label: "Износ рабочего колеса"
+    conditions:
+      - signal: efficiency
+        op: lt
+        ref: baseline.efficiency
+        factor: 0.85
+        weight: 2
+      - signal: efficiency
+        op: trend_down
+        value: 0.015
+        window_sec: 30
+        weight: 1
+      - signal: vibration_rms
+        op: lt
+        ref: baseline.vibration_rms
+        factor: 1.15
+        weight: 1
+      - signal: temperature_bearing
+        op: lt
+        ref: baseline.temperature_bearing
+        factor: 1.32
+        weight: 1
+
+  - id: maintenance_due
+    title: "Достигнут межремонтный интервал"
+    severity: info
+    tags: [runtime, maintenance]
+    latch_sec: 3600
+    description: >-
+      Наработка пересекла порог внутреннего регламента 4000, 8000 или
+      16000 моточасов. Интервалы — демонстрационный внутренний регламент.
+    message: >-
+      Наработка достигла регламентного межремонтного интервала.
+    recommendation: >-
+      Достигнут регламентный межремонтный интервал. ТО-2: замена масла
+      в подшипниковых узлах, проверка центровки, протяжка фланцевых соединений.
+    overlay:
+      component_id: pump
+      marker: badge
+      color: blue
+      label: "Плановое ТО"
+    conditions:
+      - signal: runtime_hours
+        op: crosses
+        values: [4000, 8000, 16000]
+        window_sec: 60
+        weight: 1
+
+  - id: seal_leak
+    title: "Утечка через уплотнение вала"
+    severity: critical
+    tags: [cv, sensors, leak, temperature]
+    description: >-
+      Камера видит влажное пятно/капли/блеск у вала, одновременно растут
+      вибрация и температура подшипникового узла.
+    message: >-
+      Обнаружена утечка через уплотнение вала с сопутствующим перегревом узла.
+    recommendation: >-
+      Обнаружена утечка с сопутствующим перегревом узла. Перевести насос в резерв.
+    overlay:
+      component_id: flange
+      marker: outline
+      color: red
+      label: "Утечка"
+    conditions:
+      - signal: oil_leak
+        op: cv
+        cv_class: oil_leak
+        min_confidence: 0.4
+        weight: 2
+      # Порог СКЗ — граница зоны B/C ISO 10816-3.
+      - signal: vibration_rms
+        op: gt
+        ref: baseline.vibration_rms
+        factor: 2.69
+        weight: 1
+      - signal: vibration_rms
+        op: trend_up
+        value: 0.00002
+        window_sec: 20
+        weight: 1
+      # Порог по температуре подшипника.
+      - signal: temperature_bearing
+        op: gt
+        ref: baseline.temperature_bearing
+        factor: 1.5
+        weight: 1
+      - signal: temperature_bearing
+        op: trend_up
+        value: 0.0001
+        window_sec: 20
+        weight: 1
+
+  - id: mechanical_looseness
+    title: "Ослабление крепления"
+    severity: warning
+    tags: [cv, vibration, low_frequency]
+    description: >-
+      Камера фиксирует коррозию рамы/фланца, в спектре вибрации преобладает
+      первая гармоника (низкочастотная составляющая). В реальных данных 1x
+      отражает дисбаланс, поэтому порог поднят до 2.8 мм/с.
+    message: >-
+      Признаки ослабления анкерных болтов: коррозия узла крепления и
+      низкочастотная вибрация с преобладанием 1-й гармоники.
+    recommendation: >-
+      Отметить болты для протяжки (момент 85 Н·м), после затяжки проверить соосность.
+    overlay:
+      component_id: flange
+      marker: highlight
+      color: orange
+      label: "Протянуть болты"
+    conditions:
+      - signal: corrosion
+        op: cv
+        cv_class: corrosion
+        component_id: flange
+        min_confidence: 0.4
+        weight: 2
+      # Порог по 1x-гармонике; прежнее значение давало ложные срабатывания.
+      - signal: vibration_lf_1x
+        op: gt
+        ref: baseline.vibration_lf_1x
+        factor: 3.46
+        weight: 2
+      - signal: vibration_lf_1x
+        op: gt
+        ref: vibration_rms
+        factor: 0.55
+        weight: 1
+
+  - id: lubrication_degradation
+    title: "Деградация смазки"
+    severity: warning
+    tags: [sensors, oil, temperature]
+    description: >-
+      Цвет масла тёмный/мутный или уровень ниже MIN, температура подшипникового
+      узла выросла на 10–15 °C относительно нормы.
+    message: >-
+      Смазка деградировала: цвет/уровень масла вне нормы, температура
+      подшипникового узла повышена.
+    recommendation: >-
+      Запланировать замену масла и промывку подшипникового щита в течение 48 часов.
+    overlay:
+      component_id: pump
+      marker: badge
+      color: orange
+      label: "Заменить масло"
+    conditions:
+      - op: any
+        weight: 2
+        alternatives:
+          - signal: oil_color
+            op: in
+            value: [amber, dark, emulsion]
+            weight: 1
+          - signal: oil_level
+            op: lt
+            value: 45
+            weight: 1
+      # Порог температуры: норма + 12 °C.
+      - signal: temperature_bearing
+        op: gt
+        ref: baseline.temperature_bearing
+        factor: 1.24
+        weight: 1
+      - signal: temperature_bearing
+        op: trend_up
+        value: 0.0001
+        window_sec: 20
+        weight: 1
+
+  - id: electrical_contact
+    title: "Нагрев силового соединения"
+    severity: critical
+    tags: [cv, electrical, current]
+    description: >-
+      Камера видит окисление/потемнение изоляции на клеммной коробке,
+      дисбаланс токов по фазам превышает 5 % или температура обмоток
+      превышает 90 °C.
+    message: >-
+      Критический нагрев силового соединения: окисление клемм, дисбаланс токов
+      или локальный рост температуры двигателя.
+    recommendation: >-
+      Критический нагрев силового соединения. Обесточить и протянуть клеммы.
+    overlay:
+      component_id: motor
+      marker: outline
+      color: red
+      label: "Клеммная коробка"
+    conditions:
+      - signal: corrosion
+        op: cv
+        cv_class: corrosion
+        component_id: motor
+        min_confidence: 0.5
+        weight: 2
+      - op: any
+        weight: 2
+        alternatives:
+          - signal: current
+            op: unbalance_pct
+            value: 5
+            weight: 1
+          # Порог по температуре обмоток; прежний factor давал ложные
+          # срабатывания.
+          - signal: temperature_motor
+            op: gt
+            ref: baseline.temperature_motor
+            factor: 1.38
+            weight: 1
+      - signal: temperature_motor
+        op: trend_up
+        value: 0.0001
+        window_sec: 20
+        weight: 1
+        optional: true
+
+  - id: gauge_drift
+    title: "Расхождение показаний манометра"
+    severity: warning
+    tags: [ocr, pressure, metrology]
+    description: >-
+      OCR показаний аналогового манометра расходится с давлением датчика
+      более чем на 20 %. Без OCR-значения правило не срабатывает.
+      Порог 20 %, а не 15 %, чтобы не ловить расхождение печатного
+      демо-планшета и различать дрейф.
+    message: >-
+      Показания аналогового манометра расходятся с давлением датчика более чем
+      на 20 %.
+    recommendation: >-
+      Расхождение показаний давления. Датчик требует поверки или продувки
+      импульсной линии.
+    overlay:
+      component_id: manometer
+      marker: badge
+      color: orange
+      label: "Поверка манометра"
+    conditions:
+      - signal: manometer_ocr
+        op: deviation_pct
+        ref: pressure_outlet
+        value: 20
+        weight: 1
+
+  - id: guard_removed
+    title: "Кожух муфты отсутствует"
+    severity: critical
+    tags: [cv, safety]
+    description: >-
+      Камера фиксирует отсутствие, разрушение или смещение кожуха муфты.
+      Правило не зависит от датчиков и срабатывает только по CV.
+    message: >-
+      Кожух муфты отсутствует, разрушен или смещён. Эксплуатация опасна.
+    recommendation: >-
+      Эксплуатация запрещена до устранения.
+    overlay:
+      component_id: coupling_guard
+      marker: outline
+      color: red
+      label: "Кожух отсутствует"
+    conditions:
+      - op: any
+        weight: 1
+        alternatives:
+          - signal: guard_damage
+            op: cv
+            cv_class: guard_damage
+            component_id: coupling_guard
+            min_confidence: 0.4
+            weight: 1
+          - signal: guard_removed
+            op: cv
+            cv_class: guard_removed
+            component_id: coupling_guard
+            min_confidence: 0.4
+            weight: 1
+
+  - id: visual_defect
+    title: "Визуальные признаки дефекта"
+    severity: warning
+    dynamic: visual_defect
+    # Эвристики слабее датчиков: собственный порог активации (score 0.5+).
+    activate_confidence: 0.5
+    tags: [cv, visual, heuristics]
+    description: >-
+      Эвристики cv_classic.defects нашли на узле масляный подтёк, коррозию,
+      окисление, трещину или повреждение кожуха. Правило замыкает цепочку
+      «визуальный статус узла → диагноз с текстом и рекомендацией».
+    message: "Визуальные признаки дефекта: {defects} на узле {component}."
+    recommendation: >-
+      Осмотреть узел, подтвердить дефект и устранить причину.
+    recommendations:
+      corrosion: "Зачистить и окрасить поверхность, проверить толщину стенки."
+      oil_leak: "Проверить уплотнения и уровень масла, устранить подтёк."
+      oxidation: "Протянуть клеммы, проверить переходное сопротивление."
+      crack: "Осмотреть узел, при подтверждении трещины вывести из эксплуатации."
+      guard_damage: "Осмотреть и восстановить кожух муфты."
+    overlay:
+      component_id: pump
+      marker: highlight
+      color: orange
+      label: "Визуальный дефект"
+    dedupe_group: visual
+    specificity: 1
+    # Более специфичные многоканальные диагнозы важнее общей визуальной картинки.
+    suppressed_by_rules:
+      [seal_leak, mechanical_looseness, electrical_contact, guard_removed]
+    conditions:
+      # Порог срабатывания эвристик (present) — в cv_classic/configs/defects.json;
+      # min_confidence здесь задаёт нижнюю границу для правила.
+      - op: any
+        weight: 1
+        description: "любая свежая визуальная детекция дефекта на узле"
+        alternatives:
+          - signal: oil_leak
+            op: cv
+            cv_class: oil_leak
+            min_confidence: 0.5
+            weight: 1
+          - signal: corrosion
+            op: cv
+            cv_class: corrosion
+            min_confidence: 0.5
+            weight: 1
+          - signal: oxidation
+            op: cv
+            cv_class: oxidation
+            min_confidence: 0.5
+            weight: 1
+          - signal: crack
+            op: cv
+            cv_class: crack
+            min_confidence: 0.5
+            weight: 1
+          - signal: guard_damage
+            op: cv
+            cv_class: guard_damage
+            min_confidence: 0.5
+            weight: 1
+          - signal: texture_anomaly
+            op: cv
+            cv_class: texture_anomaly
+            min_confidence: 0.5
+            weight: 1
+
+  - id: cavitation_confirmed
+    title: "Кавитация подтверждена"
+    severity: critical
+    tags: [sensors, cv, acoustics, cavitation]
+    dedupe_group: cavitation
+    specificity: 2
+    description: >-
+      Падение давления на входе и высокочастотная вибрация подтверждены
+      визуально или акустически. Более специфичная версия правила cavitation.
+    message: >-
+      Кавитация подтверждена: низкое давление на входе, высокочастотная
+      вибрация и визуальное/акустическое подтверждение.
+    recommendation: >-
+      Длительная работа запрещена. Проверить уровень в приёмной ёмкости
+      и состояние входных фильтров.
+    overlay:
+      component_id: pump
+      marker: outline
+      color: red
+      label: "Кавитация подтверждена"
+    conditions:
+      # 0.7 × 0.3 = 0.21 бар — глубже, чем в базовом правиле.
+      - signal: pressure_inlet
+        op: lt
+        ref: baseline.pressure_inlet
+        factor: 0.7
+        weight: 2
+      # Порог тревоги по ВЧ шуму.
+      - signal: vibration_hf
+        op: gt
+        ref: baseline.vibration_hf
+        factor: 45.5
+        weight: 2
+      - op: any
+        weight: 2
+        alternatives:
+          - signal: cavitation
+            op: cv
+            cv_class: cavitation
+            min_confidence: 0.4
+            weight: 1
+          - signal: noise_db
+            op: gt
+            ref: baseline.noise_db
+            factor: 1.12
+            weight: 1
+      - signal: vibration_rms
+        op: trend_up
+        value: 0.00002
+        window_sec: 20
+        weight: 1
+        optional: true

@@ -1,0 +1,23 @@
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+pillow==11.0.0
+numpy==1.26.4
+python-multipart==0.0.20
+websockets==13.1
+sqlalchemy==2.0.36
+psycopg[binary]==3.2.3
+PyYAML==6.0.3
+# AR-планшет: маркерless-привязка + гомография + OCR манометра (ar_board, cv_classic)
+opencv-contrib-python==4.11.0.86
+
+# Визуальные каналы: PatchCore v2 (torch) и коррозия (ONNX)
+# Для CPU достаточно torch с PyPI; для GPU ставьте wheels под свою CUDA.
+torch==2.14.1
+torchvision==0.29.1
+# Для GPU замените на onnxruntime-gpu==1.23.2
+onnxruntime==1.23.2
+
+# Тесты
+pytest==8.3.4
+httpx==0.28.1

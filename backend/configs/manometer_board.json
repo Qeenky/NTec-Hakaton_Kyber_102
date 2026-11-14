@@ -1,0 +1,23 @@
+{
+  "comment": [
+    "Калибровка аналогового манометра, напечатанного на AR-планшете.",
+    "Шкала 0..13.39 бар, 225° (0 бар) -> -45° (полная шкала), по часовой стрелке.",
+    "center/radius заданы в координатах ROI-кропа пайплайна: квадрат 512x512,",
+    "центр зоны manometer из layout.json, margin=1.30. Это позволяет пропустить",
+    "перебор HoughCircles и читать манометр за ~100 мс вместо ~400 мс.",
+    "Для реального прибора калибровка делается cv_classic/calibrate.py."
+  ],
+  "angle_min": 225.0,
+  "angle_max": -45.0,
+  "value_min": 0.0,
+  "value_max": 13.39,
+  "unit": "бар",
+  "clockwise": true,
+  "center": [243.1, 259.8],
+  "radius": 135.0,
+  "auto_orient": false,
+  "target_size": 512,
+  "min_needle_frac": 0.3,
+  "min_confidence": 0.15,
+  "keep_debug_image": false
+}
